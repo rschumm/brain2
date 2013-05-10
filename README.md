@@ -46,5 +46,7 @@ Initial Aufgabenstellung, auf JBoss EAP 6 deployd:
 
 http://localhost:8080/brain2/brain2
 
+Zum Deploy: goal jboss-as:deploy  ...undeploy, ...redeploy
+
 
 
