@@ -39,4 +39,12 @@ Mit dieser Einführungsaufgabe sollen folgende Dinge geübt werden:
 
 
 
+URLs
+----
+
+Initial Aufgabenstellung, auf JBoss EAP 6 deployd:  
+
+http://localhost:8080/brain2/brain2
+
+
 
