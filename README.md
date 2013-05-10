@@ -1,4 +1,4 @@
-brain2
+brain 2.0
 ======
 
 Einführungsaufgabe für Joël Niederhauser
