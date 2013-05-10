@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css"
+	href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" />
+
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+	$(function() {
+
+		function berechneServer() {
+			var stage = $("#stage").val();
+
+			var runtime = $("#runtime").val().split(":");
+			var host = runtime[0];
+			var jbnr = runtime[1];
+
+			return host + "." + stage + ".firma.intranet";
+
+		}
+
+		function berechneJbnr() {
+			var stage = $("#stage").val();
+
+			var runtime = $("#runtime").val().split(":");
+			var host = runtime[0];
+			var jbnr = runtime[1];
+
+			return jbnr;
+
+		}
+
+		function genDeployment() {
+
+			var artifact = $("#artifact").val().split(":");
+			var bundleId = artifact[0];
+			var groupId = artifact[1];
+			var artifactId = artifact[2];
+			var extension = artifact[3];
+
+			var currVer = $("#currentVersion").val();
+			var newVer = $("#newVersion").val();
+
+			var stage = $("#stage").val();
+
+			var instance = berechneJbnr();
+			var server = berechneServer();
+
+			$("#out")
+					.val(
+							'Deployment deploy {"tenantDefinedBundleId":"'
+									+ bundleId
+									+ '","groupId":"'
+									+ groupId
+									+ '","artifactId":"'
+									+ artifactId
+									+ '","extension":"'
+									+ extension
+									+ (currVer != '' ? '","currentVersion":"'
+											+ currVer : '')
+									+ '","newVersion":"'
+									+ newVer
+									+ '","primary":"true","restartRequired":"true","repoId":"ch-public"} {"platformRepoId":"ch-public","runtimeName":"'
+									+ bundleId
+									+ '-runtime","asVersion":"jboss-eap-6.0.0","sharedContainer":"false","asHome":"/opt/jet/jboss-platform-0/jboss/'
+									+ instance
+									+ '","platformStage":"'
+									+ stage
+									+ '","operationMode":"DOMAIN","tenant":"axa-ch","stage":"'
+									+ stage
+									+ '"} {"server-group-1":{"'
+									+ server
+									+ '.'
+									+ instance
+									+ '.master":["server-1"]}} {"ch-public":{"repoUrl":"http://mvnrepo.paas.intraxa/nexus/ch-public"}}');
+
+			return false;
+		}
+
+		function genWartung() {
+			var instance = berechneJbnr();
+			var server = berechneServer();
+
+			$("#enDebug").val(
+					"JBossConfiguration enableRemoteDebugging " + instance
+							+ " " + server + "." + instance + ".master");
+			$("#disDebug").val(
+					"JBossConfiguration disableRemoteDebugging " + instance
+							+ " " + server + "." + instance + ".master");
+			$("#serverinfo").val("JBossInformation getRuntimeInfo " + instance);
+			$("#restart").val(
+					"JBossOperation restartServerGroup " + instance + " "
+							+ server + "." + instance + ".master");
+
+			return false;
+		}
+
+		function genAll() {
+			genDeployment();
+			genWartung();
+
+		}
+
+		$("#deployment input").on('keyup', genAll);
+		$("#deployment select").on('change', genAll);
+		$("#okButton").on('click', genAll); 
+	})
+</script>
+</head>
+<body style="padding: 20px;">
+
+	<div class="navbar">
+		<div class="navbar-inner">
+			<a class="brand" href="#">Brain 3.0</a>
+			<ul class="nav">
+				<li class="active"><a href="#">Generate deployment commands</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="hero-unit">
+		<h1>Welcome to Brain 2.0 - Joël</h1>
+		<p>Generate jetset commands - Edition Joël</p>
+	</div>
+
+
+
+	<form id="form">
+		<fieldset class="fieldset" id="deployment">
+
+			<legend>Deployment</legend>
+
+			<div>
+
+				<select id="stage" name="stage" placeholder="stage">
+					<option value="dev">Development</option>
+					<option value="acc">Acceptance</option>
+
+				</select> <select id="artifact" name="artifact" placeholder="artifact">
+					<option value="oms-ear:com.axa.ch.oms:oms-ear:ear">oms-ear</option>
+					<option value="csi-ear:com.axa.ch.csi:csi-ear:ear">csi-ear</option>
+
+				</select> <select id="runtime" name="runtime" placeholder="server runtime">
+					<option value="lxfapp26:jb0000">server 1 (oms)</option>
+					<option value="lxfapp27:jb0001">server 2 (csi)</option>
+
+				</select> <input type="text" placeholder="currentVersion" id="currentVersion" />
+
+				<input type="text" placeholder="newVersion" id="newVersion" />
+				
+				<button class="btn btn-primary" type="button" id="okButton">ok</button>
+
+			</div>
+
+			<div>
+				<textarea id="out" name="out" style="width: 100%; height: 100px;"></textarea>
+			</div>
+
+		</fieldset>
+
+		<fieldset class="fieldset" id="wartung">
+
+			<legend>Wartung</legend>
+
+
+			<div class="form-horizontal">
+				<div class="control-group">
+					<label class="control-label" for="serverinfo">serverinfo</label>
+					<div class="controls">
+						<input type="text" id="serverinfo" placeholder="serverinfo"
+							style="width: 100%;">
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="enDebug">enable debug</label>
+					<div class="controls">
+						<input type="text" id="enDebug" placeholder="enable debug"
+							style="width: 100%;">
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="disDebug">disable debug</label>
+					<div class="controls">
+						<input type="text" id="disDebug" placeholder="disable debug"
+							style="width: 100%;">
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="restart">restart server</label>
+					<div class="controls">
+						<input type="text" id="restart" placeholder="restart server"
+							style="width: 100%;">
+					</div>
+				</div>
+			</div>
+	</form>
+
+
+
+
+	<h2>Remote-Debugging</h2>
+
+	<pre>
+jetomsdevt1.dev.firma.intranet:21000
+jetomsdevt2.dev.firma.intranet:21001
+</pre>
+
+
+	<h2>Admin Consolen:</h2>
+
+	<p>
+		<a href="http://jetomsdevt1.dev.firma.intranet:16500/console">jetomsdevt1
+			(oms)</a> <br /> user: admin password: server-jb0000
+	</p>
+
+	<p>
+		<a href="http://jetomsdevt2.dev.firma.intranet:16501/console">jetomsdevt2
+			(csi)</a> <br> user: admin password: server-jb0001
+	</p>
+
+
+	<h2>App-Links</h2>
+
+
+	<p>
+		<a href="http://jetomsdevt1.dev.firma.intranet:17000/oms">oms DEV</a>
+		<br>
+	</p>
+
+	<p>
+		<a href="http://jetomsdevt2.dev.firma.intranet:17001/csi">csi DEV</a>
+		<br>
+	</p>
+
+
+
+
+
+
+	<h2>Andere Befehle, Logs</h2>
+
+	<p>
+		Start JetSet Shell
+		<code> /opt/jet/jetset/bin/jetset.sh -s </code>
+	</p>
+
+	<p>
+		Logs
+		<code> tail -f
+			/opt/jet/jboss-platform-0/jboss/jb0000/domain/servers/server-1/log/server.log
+		</code>
+	</p>
+
+	<p>
+		Deployment-Ordner
+		<code> /opt/jet/jboss-platform-0/jboss/jb0000/_deployment </code>
+	</p>
+
+	<p>
+		Domain-Config
+		<code>
+			/opt/jet/jboss-platform-0/jboss/jb0000/domain/configuration/domain.xml
+		</code>
+	</p>
+
+
+
+</body>
+</html>

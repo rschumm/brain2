@@ -20,7 +20,7 @@ Das Gui ist bestehend und basiert auf Bootstrap von Twitter. Die Logik sind einf
 
 Neu soll eine Persistenz-Schicht aufgebaut werden: 
 
-- Jetty Server mit JEE6, direkt im eclipse gestartet
+- JBoss EAP 6.0 oder später Jetty Server mit JEE6, direkt im eclipse gestartet
 - H2 Datenbank mit JPA
 - RESTful WS mit JAX-RS
 - Zugriff über AJAX mit jQuery
@@ -44,7 +44,12 @@ URLs
 
 Initial Aufgabenstellung, auf JBoss EAP 6 deployd:  
 
-http://localhost:8080/brain2/brain2
+GUI:  
+http://localhost:8080/brain2/
+
+REST-Service:  
+http://localhost:8080/brain2/rest/brain2
+
 
 Zum Deploy: goal jboss-as:deploy  ...undeploy, ...redeploy
 
