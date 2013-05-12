@@ -20,7 +20,7 @@ Das Gui ist bestehend und basiert auf Bootstrap von Twitter. Die Logik sind einf
 
 Neu soll eine Persistenz-Schicht aufgebaut werden: 
 
-- JBoss EAP 6.0 oder später Jetty Server mit JEE6, direkt im eclipse gestartet
+- JBoss EAP 6.0 (oder später Jetty Server mit JEE6), direkt im eclipse gestartet
 - H2 Datenbank mit JPA
 - RESTful WS mit JAX-RS
 - Zugriff über AJAX mit jQuery
