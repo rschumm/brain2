@@ -7,6 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -29,11 +30,11 @@ public class BrainRESTService {
     }
     
     @GET
-    @Path("/eins")
+    @Path("/stagenr/{nummer}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Stage firstStage() {
-    	log.info("liste stages"); 
-        return brainService.getAllStages().get(1);
+    public Stage stageNummer(@PathParam("nummer")int nummer) {
+    	log.info("stage nr"); 
+        return brainService.getAllStages().get(nummer-1);
     }
     
     
