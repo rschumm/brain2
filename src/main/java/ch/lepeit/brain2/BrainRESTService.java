@@ -22,10 +22,18 @@ public class BrainRESTService {
     private BrainService brainService; 
     
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_XML)
     public List<Stage> listAllStages() {
     	log.info("liste stages"); 
         return brainService.getAllStages();
+    }
+    
+    @GET
+    @Path("/eins")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Stage firstStage() {
+    	log.info("liste stages"); 
+        return brainService.getAllStages().get(1);
     }
     
     
