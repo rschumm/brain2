@@ -28,5 +28,11 @@ public class BrainRESTService {
         return brainService.getAllStages();
     }
     
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Stage> listStageOne(){
+        return null;
+        
+    }
+    
     
 }
