@@ -10,6 +10,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import ch.lepeit.brain2.model.Stage;
+
 
 @Path("/brain2")
 @RequestScoped
