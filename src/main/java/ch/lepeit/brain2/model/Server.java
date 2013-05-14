@@ -18,7 +18,7 @@ public class Server {
     private int number;
     
     @OneToMany(mappedBy="server")
-    private List<Installation> installation;
+    private List<Installation> installationen;
 
     public Server() {
         this(null,0);
@@ -28,7 +28,7 @@ public class Server {
         this.id = id;
         this.number = number;
         this.url = url;
-        installation = new ArrayList<Installation>();
+        installationen = new ArrayList<Installation>();
     }
 
     public int getId() {
@@ -56,11 +56,11 @@ public class Server {
     }
 
     public List<Installation> getInstallation() {
-        return installation;
+        return installationen;
     }
 
-    public void setInstallation(List<Installation> installation) {
-        this.installation = installation;
+    public void setInstallation(List<Installation> installationen) {
+        this.installationen = installationen;
     }
     
 }
