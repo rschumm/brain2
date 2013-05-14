@@ -16,6 +16,7 @@ public class Server {
     
     private String url;
     private int number;
+    private String description;
     
     @OneToMany(mappedBy="server")
     private List<Installation> installationen;
@@ -62,5 +63,22 @@ public class Server {
     public void setInstallation(List<Installation> installationen) {
         this.installationen = installationen;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<Installation> getInstallationen() {
+        return installationen;
+    }
+
+    public void setInstallationen(List<Installation> installationen) {
+        this.installationen = installationen;
+    }
+    
     
 }

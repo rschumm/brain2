@@ -82,3 +82,27 @@ org.h2.message.DbException: The connection was not closed by the application and
 Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-171]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
 	... 14 more
+05-14 13:46:07 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO STAGE VALUES(3, 'Production'):[*] "; SQL statement:
+insert into stage Values(3, 'Production'): [42000-171]
+05-14 13:46:36 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO STAGE VALUES(3, 'Production'):[*] "; SQL statement:
+insert into stage Values(3, 'Production'): [42000-171]
+05-14 14:02:17 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE DEPLOYARTEFAKT 
+ADD GROUPID VARCHAR(255),[*] ARTEFAKTID VARCHAR(255), EXTENTION VARCHAR(255) "; SQL statement:
+Alter table DEPLOYARTEFAKT 
+add GROUPID VARCHAR(255), ARTEFAKTID VARCHAR(255), EXTENTION VARCHAR(255) [42000-171]
+05-14 14:02:37 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ADD[*] ARTEFAKTID VARCHAR(255)"; expected "ALTER, ANALYZE, {"; SQL statement:
+ADD ARTEFAKTID VARCHAR(255) [42001-171]
+05-14 14:02:37 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ADD[*] EXTENTION VARCHAR(255)"; expected "ALTER, ANALYZE, {"; SQL statement:
+ADD EXTENTION VARCHAR(255) [42001-171]
+05-14 14:02:49 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE DEPLOYARTEFAKT 
+ADD ARTEFAKTID VARCHAR(255),[*]
+ADD EXTENTION VARCHAR(255) "; SQL statement:
+Alter table DEPLOYARTEFAKT 
+ADD ARTEFAKTID VARCHAR(255),
+ADD EXTENTION VARCHAR(255) [42000-171]

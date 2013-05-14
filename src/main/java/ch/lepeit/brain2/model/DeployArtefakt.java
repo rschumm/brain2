@@ -18,6 +18,9 @@ public class DeployArtefakt {
     List<Installation> installationen;
     
     private String name;
+    private String groupId;
+    private String artefaktId;
+    private String extension;
     
     public DeployArtefakt(String name){
         this.id = id;
@@ -47,6 +50,31 @@ public class DeployArtefakt {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
+    }
+
+    public String getArtefaktId() {
+        return artefaktId;
+    }
+
+    public void setArtefaktId(String artefaktId) {
+        this.artefaktId = artefaktId;
+    }
+
+    public String getExtension() {
+        return extension;
+    }
+
+    public void setExtension(String extension) {
+        this.extension = extension;
     }
     
     
