@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 /**
  * @author C925845
- * Wir später ersetzt. 
  */
 
 @Entity
@@ -14,17 +13,16 @@ public class Stage implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    private int Stage_ID;
+    private int ID;
     
-    @Lob()
     private String Name;
 
     public int getStage_ID() {
-        return Stage_ID;
+        return ID;
     }
 
     public void setStage_ID(int stage_ID) {
-        Stage_ID = stage_ID;
+        ID = stage_ID;
     }
 
     public String getName() {
@@ -34,11 +32,5 @@ public class Stage implements Serializable {
     public void setName(String name) {
         Name = name;
     }
-
-    public static Stage values() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-    
     
 }

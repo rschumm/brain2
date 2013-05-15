@@ -44,8 +44,8 @@
 	</dependencyManagement>
 	<dependencies>
 		<dependency>
-			<groupId>javax.persistence</groupId>
-			<artifactId>persistence-api</artifactId>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-ejb_3.0_spec</artifactId>
 			<version>1.0</version>
 		</dependency>
 		<dependency>
@@ -159,6 +159,7 @@
 											<jndi-name>java:jboss/datasources/brain2ds</jndi-name>
 											<enabled>true</enabled>
 											<connection-url>jdbc:h2:C:\eplatform\ews\git\brain2\src\main\resources\H2\test</connection-url>
+											
 											<pool-name>h2Pool</pool-name>
 											<driver-name>h2-driver.jar</driver-name>
 										</properties>
