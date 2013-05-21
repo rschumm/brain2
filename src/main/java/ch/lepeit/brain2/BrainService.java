@@ -16,6 +16,8 @@ import ch.lepeit.brain2.model.Version;
 
 @Stateless
 public class BrainService {
+    
+    private String name;
 
     @PersistenceContext
     private EntityManager em;
@@ -38,6 +40,20 @@ public class BrainService {
     
     public List<Installation> getAllInstallations(){
         return em.createQuery("SELECT x FROM Installation x").getResultList();
+    }
+    
+    public List<Stage> getStageForName(String name){
+        return em.createQuery("SELECT name FROM Stage name").getResultList();
+    }
+    
+    public int count(){
+        return (int) em.createQuery("SELECT COUNT x FROM Stage x").getSingleResult();
+        
+    }
+    
+    public List<Installation> addInstallation(){
+        return em.createQuery("INSERT x FROM Installation x").getResultList();
+        
     }
 
 }
