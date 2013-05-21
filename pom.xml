@@ -159,7 +159,7 @@
 											<jndi-name>java:jboss/datasources/brain2ds</jndi-name>
 											<enabled>true</enabled>
 											<connection-url>jdbc:h2:C:\eplatform\ews\git\brain2\src\main\resources\H2\test</connection-url>
-											<connectionType>connection</connectionType>
+											
 											<pool-name>h2Pool</pool-name>
 											<driver-name>h2-driver.jar</driver-name>
 										</properties>
