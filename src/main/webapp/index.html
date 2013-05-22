@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Brain2</title>
 <link rel="stylesheet" type="text/css"
 	href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" />
 
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script type="text/javascript">
+
+
 	$(function() {
 
 		function berechneServer() {
@@ -102,9 +105,23 @@
 
 		}
 
+		function stagesAbfuellen(){
+			$.ajax('http://localhost:8080/brain2/rest/brain2', {
+				success: function(data) { 
+					data.forEach(function(d) { 
+						$("#stage").append('<option value="'+d.id+'" >'+d.name+'</option>');
+					}) 
+				}
+			});
+
+		}
+
 		$("#deployment input").on('keyup', genAll);
 		$("#deployment select").on('change', genAll);
 		$("#okButton").on('click', genAll); 
+
+		stagesAbfuellen(); 
+		
 	})
 </script>
 </head>
@@ -134,10 +151,10 @@
 			<div>
 
 				<select id="stage" name="stage" placeholder="stage">
-					<option value="dev">Development</option>
-					<option value="acc">Acceptance</option>
-
-				</select> <select id="artifact" name="artifact" placeholder="artifact">
+			
+				</select> 
+				
+				<select id="artifact" name="artifact" placeholder="artifact">
 					<option value="oms-ear:com.axa.ch.oms:oms-ear:ear">oms-ear</option>
 					<option value="csi-ear:com.axa.ch.csi:csi-ear:ear">csi-ear</option>
 
@@ -148,7 +165,7 @@
 				</select> <input type="text" placeholder="currentVersion" id="currentVersion" />
 
 				<input type="text" placeholder="newVersion" id="newVersion" />
-				
+
 				<button class="btn btn-primary" type="button" id="okButton">ok</button>
 
 			</div>
