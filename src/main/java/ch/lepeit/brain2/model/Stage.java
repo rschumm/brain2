@@ -13,24 +13,34 @@ public class Stage implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    private int ID;
+    private int id;
     
-    private String Name;
+    private String name;
+    
+    private String kurzName;
 
     public int getStage_ID() {
-        return ID;
+        return id;
     }
 
     public void setStage_ID(int stage_ID) {
-        ID = stage_ID;
+        id = stage_ID;
+    }
+
+    public String getKurzName() {
+        return kurzName;
+    }
+
+    public void setKurzName(String kurzName) {
+        this.kurzName = kurzName;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        name = name;
     }
     
 }

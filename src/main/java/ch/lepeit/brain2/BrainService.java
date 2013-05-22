@@ -55,5 +55,7 @@ public class BrainService {
         return em.createQuery("INSERT x FROM Installation x").getResultList();
         
     }
+    
+    
 
 }
