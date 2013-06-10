@@ -13,6 +13,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import ch.lepeit.brain2.model.Version;
+
 import ch.lepeit.brain2.model.Installation;
 import ch.lepeit.brain2.model.Stage;
 
@@ -36,7 +38,7 @@ public class BrainRESTService {
     @GET
     @Path("/{name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Stage> getStageForName(@PathParam("name")
+    public Stage getStageForName(@PathParam("name")
     String name) {
         log.info("forName");
         return brainService.getStageForName(name);
@@ -44,11 +46,29 @@ public class BrainRESTService {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void addInstallation(Installation installation){
+    public void addInstallation(Installation installation) {
         log.info("add");
-        brainService.addInstallation();
+        brainService.addInstallation(installation); // stimmt so hoffentlich (installation) ?
     }
 
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void addVersion(Version version) {
+        log.info("add");
+        brainService.addVersion(version);
+    }
+
+
+    @POST
+    @Path("/addStages")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void addStage(List<Stage> stages) {
+        log.info(stages.get(0).toString());
+ //       brainService.addVersion(version);
+    }
+    
+
+    
     @GET
     @Path("/count")
     @Produces(MediaType.APPLICATION_JSON)
@@ -56,5 +76,6 @@ public class BrainRESTService {
         log.info("count");
         return brainService.count();
     }
+    
 
 }
