@@ -21,6 +21,8 @@
 		<!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered 
 			resources, i.e. build is platform dependent! -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<db.path>jdbc:h2:D:\SCRE\git\rschumm\brain2\src\main\resources\H2\test;AUTO_SERVER=TRUE</db.path>
+		<!-- <db.path>jdbc:h2:C:\eplatform\ews\git\brain2\src\main\resources\H2\test;AUTO_SERVER=TRUE</db.path> -->
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -159,7 +161,7 @@
 											<driver-class>org.h2.Driver</driver-class>
 											<jndi-name>java:jboss/datasources/brain2ds</jndi-name>
 											<enabled>true</enabled>
-											<connection-url>jdbc:h2:C:\eplatform\ews\git\brain2\src\main\resources\H2\test;AUTO_SERVER=TRUE</connection-url>
+											<connection-url>${db.path}</connection-url>
 											<user-name>root</user-name>
 											<password>1234</password>
 											<pool-name>h2Pool</pool-name>
