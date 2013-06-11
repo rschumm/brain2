@@ -45,12 +45,10 @@ public class BrainService {
         Query query = em.createQuery("Select x from Stage x where x.name = :name", Stage.class);
         query.setParameter("name", name);
         return (Stage) query.getSingleResult();
-
     }
 
     public int count() {
         return (int) em.createQuery("SELECT COUNT x FROM Stage x").getSingleResult();
-
     }
 
     public void addInstallation(Installation installation) {
@@ -61,4 +59,7 @@ public class BrainService {
         em.persist(version);
     }
 
+    // public Installation getInsForVers() {
+    // return em.createQuery("SELECT x FROM ");
+    // }
 }

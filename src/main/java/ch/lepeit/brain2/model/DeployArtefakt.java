@@ -22,6 +22,9 @@ public class DeployArtefakt {
     private String artefaktId;
     private String extension;
     
+    public DeployArtefakt() {
+    }
+    
     public DeployArtefakt(String name){
         this.id = id;
         this.name = name;
