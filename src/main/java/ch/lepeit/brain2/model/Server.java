@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class Server {
@@ -19,7 +20,8 @@ public class Server {
     private int number;
     private String description;
     
-    @OneToMany(fetch=FetchType.EAGER, mappedBy="server")
+    @OneToMany(mappedBy="server")
+    @Transient
     private List<Installation> installationen;
 
     public Server() {
