@@ -51,8 +51,11 @@ public class BrainService {
         return (int) em.createQuery("SELECT COUNT x FROM Stage x").getSingleResult();
     }
 
-    public void addInstallation(Installation installation) {
-        em.persist(installation);
+    public void addInstallation(Installiere installiere) {
+        
+        Installation installation = new Installation();
+        //TODO abfüllen. 
+        em.persist(installation );
     }
 
     public void addVersion(Version version) {

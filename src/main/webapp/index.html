@@ -116,22 +116,22 @@
 
 		}
 
-		function stagesAbfuellen(){
-			$.ajax('http://localhost:8080/brain2/rest/brain2/stages', {
+		function serversAbfuellen(){
+			$.ajax('http://localhost:8080/brain2/rest/brain2/servers', {
 				success: function(data) { 
 					data.forEach(function(d) { 
-						$("#stage").append('<option value="'+d.id+'" >'+d.name+'</option>');
+						$("#server").append('<option value="'+d.id+'" >'+d.name+'</option>');
 					}) 
 				}
 			});
 
 		}
 
-		function stagesAbfuellen(){
-			$.ajax('http://localhost:8080/brain2/rest/brain2/stages', {
+		function artefakteAbfuellen(){
+			$.ajax('http://localhost:8080/brain2/rest/brain2/artefakte', {
 				success: function(data) { 
 					data.forEach(function(d) { 
-						$("#stage").append('<option value="'+d.id+'" >'+d.name+'</option>');
+						$("#artefakt").append('<option value="'+d.id+'" >'+d.name+'</option>');
 					}) 
 				}
 			});

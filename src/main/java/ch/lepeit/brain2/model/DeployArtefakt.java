@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -14,7 +15,7 @@ public class DeployArtefakt {
     @Id
     private int id;
     
-    @OneToMany
+    @OneToMany(fetch=FetchType.EAGER, mappedBy="deployArtefakt")
     List<Installation> installationen;
     
     private String name;

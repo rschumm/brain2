@@ -49,12 +49,21 @@ public class BrainRESTService {
         return brainService.getStageForName(name);
     }
 
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void addInstallation(Installation installation) {
-        log.info("add");
-        brainService.addInstallation(installation);
-    }
+//    @POST
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public void addInstallation(Installation installation) {
+//        log.info("add");
+//        brainService.addInstallation(installation);
+//    }
+    
+    
+  @POST
+  @Path("/installiere")
+  @Consumes(MediaType.APPLICATION_JSON)
+  public void installiere(Installiere installiere) {
+      log.info("add");
+      brainService.addInstallation(installiere);
+  }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
