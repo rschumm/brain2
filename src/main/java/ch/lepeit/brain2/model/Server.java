@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -18,7 +19,7 @@ public class Server {
     private int number;
     private String description;
     
-    @OneToMany(mappedBy="server")
+    @OneToMany(fetch=FetchType.EAGER, mappedBy="server")
     private List<Installation> installationen;
 
     public Server() {
