@@ -63,12 +63,16 @@ public class BrainRESTService {
         brainService.addVersion(version);
     }
 
+    /**
+     * nur zum probieren. 
+     * @param stages
+     */
     @POST
     @Path("/addStages")
     @Consumes(MediaType.APPLICATION_JSON)
     public void addStage(List<Stage> stages) {
         log.info(stages.get(0).toString());
-        // brainService.addVersion(version);
+//        brainService.add
     }
 
     @GET
