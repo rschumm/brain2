@@ -116,6 +116,28 @@
 
 		}
 
+		function stagesAbfuellen(){
+			$.ajax('http://localhost:8080/brain2/rest/brain2/stages', {
+				success: function(data) { 
+					data.forEach(function(d) { 
+						$("#stage").append('<option value="'+d.id+'" >'+d.name+'</option>');
+					}) 
+				}
+			});
+
+		}
+
+		function stagesAbfuellen(){
+			$.ajax('http://localhost:8080/brain2/rest/brain2/stages', {
+				success: function(data) { 
+					data.forEach(function(d) { 
+						$("#stage").append('<option value="'+d.id+'" >'+d.name+'</option>');
+					}) 
+				}
+			});
+
+		}
+
 		$("#deployment input").on('keyup', genAll);
 		$("#deployment select").on('change', genAll);
 		$("#okButton").on('click', genAll); 
