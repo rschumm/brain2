@@ -4,6 +4,8 @@ public class Installiere {
 
     // die Sachen, die vom gui kommen:
 
+
+
     String server;
 
     String neueversion;
