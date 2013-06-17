@@ -109,7 +109,7 @@
 			$.ajax('http://localhost:8080/brain2/rest/brain2/stages', {
 				success: function(data) { 
 					data.forEach(function(d) { 
-						$("#stage").append('<option value="'+d.kurzName+'" >'+d.name+'</option>');
+						$("#stage").append('<option value="'+d.kurzName.toLowerCase()+'" >'+d.name+'</option>');
 					}) 
 				}
 			});
