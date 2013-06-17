@@ -109,7 +109,7 @@
 			$.ajax('http://localhost:8080/brain2/rest/brain2/stages', {
 				success: function(data) { 
 					data.forEach(function(d) { 
-						$("#stage").append('<option value="'+d.id+'" >'+d.name+'</option>');
+						$("#stage").append('<option value="'+d.kurzName+'" >'+d.name+'</option>');
 					}) 
 				}
 			});
@@ -120,7 +120,7 @@
 			$.ajax('http://localhost:8080/brain2/rest/brain2/servers', {
 				success: function(data) { 
 					data.forEach(function(d) { 
-						$("#server").append('<option value="'+d.id+'" >'+d.name+'</option>');
+						$("#runtime").append('<option value="'+d.number+'" >'+d.description+'</option>');
 					}) 
 				}
 			});
@@ -131,7 +131,7 @@
 			$.ajax('http://localhost:8080/brain2/rest/brain2/artefakte', {
 				success: function(data) { 
 					data.forEach(function(d) { 
-						$("#artefakt").append('<option value="'+d.id+'" >'+d.name+'</option>');
+						$("#artifact").append('<option value="'+d.id+'" >'+d.name+'</option>');
 					}) 
 				}
 			});
@@ -143,6 +143,8 @@
 		$("#okButton").on('click', genAll); 
 
 		stagesAbfuellen(); 
+		serversAbfuellen(); 
+		artefakteAbfuellen(); 
 		
 	})
 </script>

@@ -31,14 +31,50 @@ public class BrainRESTService {
 
     @Inject
     private BrainService brainService;
+    
+    //SCHARFE SERVICES
+    //=====================================================
 
     @GET
     @Path("/stages")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Stage> listAllStages() {
-        log.info("liste stages");
+        log.info("liste Stages");
         return brainService.getAllStages();
     }
+    
+    @GET
+    @Path("/servers")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Server> listAllServers() {
+        log.info("liste Servers");
+        return brainService.getAllServers();
+    }
+    
+    @GET
+    @Path("/artefakte")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<DeployArtefakt> listAllArtefakte() {
+        log.info("liste Artefakte");
+        return brainService.getAllDepArts();
+    }
+    
+    
+    
+    
+    
+    @POST
+    @Path("/installiere")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void installiere(Installiere installiere) {
+        log.info("add");
+        brainService.addInstallation(installiere);
+    }
+    
+    
+    
+    //BASTEL SERVICES
+    //=====================================================
 
     @GET
     @Path("/{name}")
@@ -57,13 +93,7 @@ public class BrainRESTService {
 //    }
     
     
-  @POST
-  @Path("/installiere")
-  @Consumes(MediaType.APPLICATION_JSON)
-  public void installiere(Installiere installiere) {
-      log.info("add");
-      brainService.addInstallation(installiere);
-  }
+
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -92,20 +122,6 @@ public class BrainRESTService {
         return brainService.count();
     }
     
-    @GET
-    @Path("/servers")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Server> listAllServers() {
-        log.info("liste servers");
-        return brainService.getAllServers();
-    }
-    
-    @GET
-    @Path("/artefakte")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<DeployArtefakt> listAllArtefakte() {
-        log.info("liste Artefakte");
-        return brainService.getAllDepArts();
-    }
+
 
 }
