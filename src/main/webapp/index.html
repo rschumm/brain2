@@ -137,6 +137,18 @@
 			});
 
 		}
+		
+		
+		function versionAbfuellen(){
+			$.ajax('http://localhost:8080/brain2/rest/brain2/version', {
+				success: function(data) { 					
+					$("#currentVersion").val(data);
+				}
+			});
+
+		}
+		
+		
 
 		$("#deployment input").on('keyup', genAll);
 		$("#deployment select").on('change', genAll);
@@ -145,6 +157,7 @@
 		stagesAbfuellen(); 
 		serversAbfuellen(); 
 		artefakteAbfuellen(); 
+		versionAbfuellen(); 
 		
 	})
 </script>
