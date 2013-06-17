@@ -60,6 +60,14 @@ public class BrainRESTService {
     }
     
     
+    @GET
+    @Path("/version")
+    @Produces(MediaType.APPLICATION_JSON)
+    public int versionFuerInstallation(VersionInfo versionInfo) {
+        log.info("version");
+        return brainService.versionFuerInstallation(versionInfo);
+    }
+    
     
     
     
@@ -67,7 +75,7 @@ public class BrainRESTService {
     @Path("/installiere")
     @Consumes(MediaType.APPLICATION_JSON)
     public void installiere(Installiere installiere) {
-        log.info("add");
+        log.info("add installation");
         brainService.addInstallation(installiere);
     }
     

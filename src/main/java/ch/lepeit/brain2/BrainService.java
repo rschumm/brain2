@@ -57,10 +57,21 @@ public class BrainService {
         //TODO abfüllen. 
         em.persist(installation );
     }
+    
+    public int versionFuerInstallation(VersionInfo versionInfo) {
+        // TODO Datenbank abfragen. 
+        return 4711;
+    }
+    
+    
+    
+    
 
     public void addVersion(Version version) {
         em.persist(version);
     }
+
+
 
     // public Installation getInsForVers() {
     // return em.createQuery("SELECT x FROM ");
