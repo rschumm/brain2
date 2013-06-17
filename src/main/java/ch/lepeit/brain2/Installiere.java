@@ -8,7 +8,7 @@ public class Installiere {
 
     String server;
 
-    String neueversion;
+    String neueVersion;
 
     String artefakt;
 
@@ -22,12 +22,12 @@ public class Installiere {
         this.server = server;
     }
 
-    public String getNeueversion() {
-        return neueversion;
+    public String getNeueVersion() {
+        return neueVersion;
     }
 
-    public void setNeueversion(String neueversion) {
-        this.neueversion = neueversion;
+    public void setNeueVersion(String neueversion) {
+        this.neueVersion = neueversion;
     }
 
     public String getArtefakt() {

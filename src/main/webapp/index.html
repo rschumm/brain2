@@ -148,6 +148,28 @@
 
 		}
 		
+		function neueInstallation(){
+			var neueVersion = $("#newVersion").val();
+			var server = 'oscar'; 
+			var artefakt = 'sommer'; 
+			var stage = "edu"; 
+			
+			var postData = {
+				"neueVersion": neueVersion, 
+				"server": server, 
+				"artefakt": artefakt, 
+				"stage": stage
+			}
+			
+			//Hier POST einbauen. 
+			$.ajax('http://localhost:8080/brain2/rest/brain2/installiere', {
+				success: function(data) { 					
+					$("#currentVersion").val(newVersion);
+				}
+			});
+
+		}
+		
 		
 
 		$("#deployment input").on('keyup', genAll);
