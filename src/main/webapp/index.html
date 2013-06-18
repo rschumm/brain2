@@ -148,33 +148,14 @@
 
 		}
 		
-		function neueInstallation(){
-			var neueVersion = $("#newVersion").val();
-			var server = 'oscar'; 
-			var artefakt = 'sommer'; 
-			var stage = "edu"; 
-			
-			var postData = {
-				"neueVersion": neueVersion, 
-				"server": server, 
-				"artefakt": artefakt, 
-				"stage": stage
-			}
-			
-			//Hier POST einbauen. 
-			$.ajax('http://localhost:8080/brain2/rest/brain2/installiere', {
-				success: function(data) { 					
-					$("#currentVersion").val(newVersion);
-				}
-			});
 
-		}
 		
 		
 
 		$("#deployment input").on('keyup', genAll);
 		$("#deployment select").on('change', genAll);
-		$("#okButton").on('click', genAll); 
+		//$("#okButton").on('click', neueInstallation()); 
+		$("#okButton").click(alert('hahaa')); 
 
 		stagesAbfuellen(); 
 		serversAbfuellen(); 
@@ -182,6 +163,30 @@
 		versionAbfuellen(); 
 		
 	})
+
+	function neueInstallation() {
+		var neueVersion = $("#newVersion").val();
+		var server = 'oscar';
+		var artefakt = 'sommer';
+		var stage = "edu";
+
+		var postData = {
+			"neueVersion" : neueVersion,
+			"server" : server,
+			"artefakt" : artefakt,
+			"stage" : stage
+		}; 
+
+		//Hier POST einbauen. 
+		$.post('http://localhost:8080/brain2/rest/brain2/installiere', {
+			data: JSON.stringify(postData), 
+			contentType: "application/json", 
+			success : function(data) {
+				$("#currentVersion").val(newVersion);
+			}
+		});
+
+	}
 </script>
 </head>
 <body style="padding: 20px;">

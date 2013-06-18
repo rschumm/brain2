@@ -55,7 +55,7 @@ public class BrainService {
         
         Installation installation = new Installation();
         //TODO abfüllen. 
-        em.persist(installation );
+        //em.persist(installation );
     }
     
     public int versionFuerInstallation(VersionInfo versionInfo) {
