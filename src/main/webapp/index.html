@@ -180,6 +180,14 @@
 			"artefakt" : artefakt,
 			"stage" : stage
 		}; 
+		
+		$("#newVersion").animate({
+		    opacity: 0.25,
+		    left: '-=200',
+		    width: '14'
+		  }, 5000, function() {
+		    alert('animate complete'); 
+		 });
 
 		//Hier POST einbauen. 
 		$.ajax('http://localhost:8080/brain2/rest/brain2/installiere', {
@@ -209,8 +217,8 @@
 	</div>
 
 	<div class="hero-unit">
-		<h1>Welcome to Brain 2.0 - Joël</h1>
-		<p>Generate jetset commands - Edition Joël</p>
+		<h1>Welcome to Brain 2.0 - Joï¿½l</h1>
+		<p>Generate jetset commands - Edition Joï¿½l</p>
 	</div>
 
 
