@@ -178,13 +178,17 @@
 		}; 
 
 		//Hier POST einbauen. 
-		$.post('http://localhost:8080/brain2/rest/brain2/installiere', {
+		$.ajax('http://localhost:8080/brain2/rest/brain2/installiere', {
+			type: "POST", 
 			data: JSON.stringify(postData), 
-			contentType: "application/json", 
+			contentType: "application/json; charset=utf-8",
 			success : function(data) {
-				$("#currentVersion").val(newVersion);
+				$("#currentVersion").val(neueVersion);
+				 $("#newVersion").val(""); 
 			}
+		
 		});
+		//$("#currentVersion").val(neueVersion);
 
 	}
 </script>
