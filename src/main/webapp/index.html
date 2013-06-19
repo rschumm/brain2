@@ -12,7 +12,25 @@
 
 	$(function() {
 
-		function berechneServer() {
+		
+
+		
+		
+
+		$("#deployment input").on('keyup', genAll);
+		$("#deployment select").on('change', genAll);
+		//$("#okButton").on('click', neueInstallation()); 
+		$("#okButton").click(neueInstallation); 
+
+		stagesAbfuellen(); 
+		serversAbfuellen(); 
+		artefakteAbfuellen(); 
+		versionAbfuellen(); 
+		
+	})
+
+	
+	function berechneServer() {
 			var stage = $("#stage").val();
 
 			var runtime = $("#runtime").val().split(":");
@@ -148,22 +166,8 @@
 
 		}
 		
-
-		
-		
-
-		$("#deployment input").on('keyup', genAll);
-		$("#deployment select").on('change', genAll);
-		//$("#okButton").on('click', neueInstallation()); 
-		$("#okButton").click(neueInstallation); 
-
-		stagesAbfuellen(); 
-		serversAbfuellen(); 
-		artefakteAbfuellen(); 
-		versionAbfuellen(); 
-		
-	})
-
+	
+	
 	function neueInstallation() {
 		var neueVersion = $("#newVersion").val();
 		var server = 'oscar';
