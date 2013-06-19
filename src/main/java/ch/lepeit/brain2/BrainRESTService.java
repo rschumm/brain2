@@ -75,7 +75,7 @@ public class BrainRESTService {
     @Path("/installiere")
     @Consumes(MediaType.APPLICATION_JSON)
     public void installiere(Installiere installiere) {
-        log.info("add installation: " + installiere.toString());
+        log.info("add installation Version: " + installiere.getNeueVersion());
         brainService.addInstallation(installiere);
     }
     
