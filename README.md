@@ -49,10 +49,6 @@ http://localhost:8080/brain2/
 
 REST-Service:  
 http://localhost:8080/brain2/rest/brain2
-bzw.   
-http://localhost:8080/brain2/rest/brain2/stagenr/2
-
-
 
 
 Zum Deploy: goal jboss-as:deploy  ...undeploy, ...redeploy
