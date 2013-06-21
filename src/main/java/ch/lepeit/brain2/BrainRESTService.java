@@ -36,20 +36,34 @@ public class BrainRESTService {
     //=====================================================
 
     @GET
+<<<<<<< HEAD
     @Path("/stages")
     @Produces(MediaType.APPLICATION_JSON)
+=======
+    @Produces(MediaType.APPLICATION_XML)
+>>>>>>> branch 'musterloesung' of https://github.com/rschumm/brain2.git
     public List<Stage> listAllStages() {
         log.info("liste Stages");
         return brainService.getAllStages();
     }
     
     @GET
+<<<<<<< HEAD
     @Path("/servers")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Server> listAllServers() {
         log.info("liste Servers");
         return brainService.getAllServers();
     }
+=======
+    @Path("/stagenr/{nummer}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Stage stageNummer(@PathParam("nummer")int nummer) {
+    	log.info("stage nr"); 
+        return brainService.getAllStages().get(nummer-1);
+    }
+    
+>>>>>>> branch 'musterloesung' of https://github.com/rschumm/brain2.git
     
     @GET
     @Path("/artefakte")
