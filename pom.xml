@@ -176,5 +176,5 @@
 			</build>
 		</profile>
 	</profiles>
-	<description>Einkaufsliste-Service Using JAX-RS (Java API for RESTful Web Services)</description>
+	<description>Einführungsaufgabe für Joël Niederhauser</description>
 </project>
