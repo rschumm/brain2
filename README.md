@@ -56,8 +56,7 @@ Zum Deploy: goal jboss-as:deploy  ...undeploy, ...redeploy
 
 DB-URL: 
 
-jdbc:h2:C:\eplatform\ews\git\brain2\src\main\resources\H2\test;AUTO_SERVER=TRUE
-jdbc:h2:D:\SCRE\git\rschumm\brain2\src\main\resources\H2\test;AUTO_SERVER=TRUE
+jdbc:h2:~/datenbanken/H2/brain2;AUTO_SERVER=TRUE
 
 
 
