@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import ch.lepeit.brain2.model.DeployArtefakt;
 import ch.lepeit.brain2.model.Installation;
@@ -16,7 +17,7 @@ import ch.lepeit.brain2.model.Version;
 @Stateless
 public class BrainService {
 
-    private String name;
+
 
     @PersistenceContext
     private EntityManager em;
@@ -52,26 +53,33 @@ public class BrainService {
     }
 
     public void addInstallation(Installiere installiere) {
-        
+
         Installation installation = new Installation();
-        //TODO abfüllen. 
-        //em.persist(installation );
+
+        TypedQuery<Server> query = em.createQuery("Select x from Server where x.url = :url", Server.class);
+        query.setParameter("url", installiere.getServerUrl());
+        Server server = query.getSingleResult();
+        installation.setServer(server);
+
+        em.persist(installation);
     }
-    
-    public int versionFuerInstallation(VersionInfo versionInfo) {
-        // TODO Datenbank abfragen. 
-        return 4711;
+
+    public String versionFuerInstallation(VersionInfo versionInfo) {
+        
+        TypedQuery<Installation> query = em.createQuery("Select i from Installation i where i.stage.name = :stageName and i.server.url = :serverUrl and i.deployArtefakt.bundleId = :bundleId", Installation.class);
+        query.setParameter("stageName", versionInfo.getStageName());
+        query.setParameter("serverUrl", versionInfo.getServerUrl());
+        query.setParameter("bundleId", versionInfo.getArtefaktBudleId());
+        
+        List<Installation> resultList = query.getResultList(); 
+         
+        
+        return resultList.size() == 0 ? "nichts" : resultList.get(0).getVersion().getVersionsNr();
     }
-    
-    
-    
-    
 
     public void addVersion(Version version) {
         em.persist(version);
     }
-
-
 
     // public Installation getInsForVers() {
     // return em.createQuery("SELECT x FROM ");

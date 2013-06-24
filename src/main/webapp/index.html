@@ -25,7 +25,7 @@
 		stagesAbfuellen(); 
 		serversAbfuellen(); 
 		artefakteAbfuellen(); 
-		versionAbfuellen(); 
+		//versionAbfuellen(); 
 		
 	})
 
@@ -60,10 +60,29 @@
 			var artifactId = artifact[2];
 			var extension = artifact[3];
 
+			var stage = $("#stage").val();
+			
+			var runtime = $("#runtime").val().split(":");
+			var url = runtime[0];
+			
+			var versionInfo = 
+					{
+						"stageName" : stage,
+						"artefaktBudleId" : bundleId,
+						"serverUrl" : url
+					}; 	
+					
+			
+			
+			
+			versionAbfuellen(versionInfo); 
+			
+			
+			
 			var currVer = $("#currentVersion").val();
 			var newVer = $("#newVersion").val();
 
-			var stage = $("#stage").val();
+			
 
 			var instance = berechneJbnr();
 			var server = berechneServer();
@@ -129,7 +148,7 @@
 					data.forEach(function(d) { 
 						$("#stage").append('<option value="'+d.kurzName.toLowerCase()+'" >'+d.name+'</option>');
 					}) 
-				}
+				} 
 			});
 
 		}
@@ -149,7 +168,7 @@
 			$.ajax('http://localhost:8080/brain2/rest/brain2/artefakte', {
 				success: function(data) { 
 					data.forEach(function(d) { 
-						$("#artifact").append('<option value="'+d.artefaktId+':'+d.groupId+':'+d.artefaktId+':'+d.extension+'" >'+d.name+'</option>');
+						$("#artifact").append('<option value="'+d.bundleId+':'+d.groupId+':'+d.artefaktId+':'+d.extension+'" >'+d.name+'</option>');
 					}) 
 				}
 			});
@@ -157,12 +176,19 @@
 		}
 		
 		
-		function versionAbfuellen(){
+		function versionAbfuellen(versionInfo){
+			
 			$.ajax('http://localhost:8080/brain2/rest/brain2/version', {
-				success: function(data) { 					
-					$("#currentVersion").val(data);
-				}
+				type: "POST", 
+				data: JSON.stringify(versionInfo), 
+				contentType: "application/json; charset=utf-8",		
+			}).done(function(data) {
+				alert("versions"); 
+				$("#currentVersion").val(data);
+				 $("#newVersion").val(""); 
 			});
+			
+
 
 		}
 		

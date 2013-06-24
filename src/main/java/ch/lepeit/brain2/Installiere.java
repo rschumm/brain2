@@ -6,7 +6,7 @@ public class Installiere {
 
 
 
-    String server;
+    String serverUrl;
 
     String neueVersion;
 
@@ -14,12 +14,12 @@ public class Installiere {
 
     String stage;
 
-    public String getServer() {
-        return server;
+    public String getServerUrl() {
+        return serverUrl;
     }
 
-    public void setServer(String server) {
-        this.server = server;
+    public void setServerUrl(String server) {
+        this.serverUrl = server;
     }
 
     public String getNeueVersion() {
