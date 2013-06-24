@@ -21,6 +21,7 @@ public class DeployArtefakt {
     private String name;
     private String groupId;
     private String artefaktId;
+    private String bundleId;
     private String extension;
     
     public DeployArtefakt() {
@@ -79,6 +80,14 @@ public class DeployArtefakt {
 
     public void setExtension(String extension) {
         this.extension = extension;
+    }
+
+    public String getBundleId() {
+        return bundleId;
+    }
+
+    public void setBundleId(String bundleId) {
+        this.bundleId = bundleId;
     }
     
     

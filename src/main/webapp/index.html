@@ -149,7 +149,7 @@
 			$.ajax('http://localhost:8080/brain2/rest/brain2/artefakte', {
 				success: function(data) { 
 					data.forEach(function(d) { 
-						$("#artifact").append('<option value="'+d.artefaktId+':'+d.groupId+':'+d.artefaktId+':'+d.extension+'" >'+d.name+'</option>');
+						$("#artifact").append('<option value="'+d.bundleId+':'+d.groupId+':'+d.artefaktId+':'+d.extension+'" >'+d.name+'</option>');
 					}) 
 				}
 			});
