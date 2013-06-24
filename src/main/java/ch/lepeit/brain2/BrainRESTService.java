@@ -60,10 +60,10 @@ public class BrainRESTService {
     }
     
     
-    @GET
+    @POST
     @Path("/version")
     @Produces(MediaType.APPLICATION_JSON)
-    public int versionFuerInstallation(VersionInfo versionInfo) {
+    public String versionFuerInstallation(VersionInfo versionInfo) {
         log.info("version");
         return brainService.versionFuerInstallation(versionInfo);
     }
