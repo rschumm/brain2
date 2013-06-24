@@ -56,7 +56,7 @@ public class BrainService {
 
         Installation installation = new Installation();
 
-        TypedQuery<Server> query = em.createQuery("Select x from Server where x.url = :url", Server.class);
+        TypedQuery<Server> query = em.createQuery("Select x from Server x where x.url = :url", Server.class);
         query.setParameter("url", installiere.getServerUrl());
         Server server = query.getSingleResult();
         installation.setServer(server);
