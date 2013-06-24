@@ -64,8 +64,10 @@ public class BrainRESTService {
     @Path("/version")
     @Produces(MediaType.APPLICATION_JSON)
     public String versionFuerInstallation(VersionInfo versionInfo) {
-        log.info("version");
-        return brainService.versionFuerInstallation(versionInfo);
+        log.info("version...");
+        String version = brainService.versionFuerInstallation(versionInfo);
+        log.info("...gefunden: " + version); 
+        return version; 
     }
     
     
@@ -89,7 +91,7 @@ public class BrainRESTService {
     @Produces(MediaType.APPLICATION_JSON)
     public Stage getStageForName(@PathParam("name")
     String name) {
-        log.info("forName");
+        log.info("Stage for Name: " + name);
         return brainService.getStageForName(name);
     }
 

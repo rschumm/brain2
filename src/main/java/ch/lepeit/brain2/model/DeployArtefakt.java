@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class DeployArtefakt {
@@ -16,6 +17,7 @@ public class DeployArtefakt {
     private int id;
     
     @OneToMany(fetch=FetchType.EAGER, mappedBy="deployArtefakt")
+    @Transient
     List<Installation> installationen;
     
     private String name;
