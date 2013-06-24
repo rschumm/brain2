@@ -12,7 +12,7 @@
 
     <container qualifier="dev" default="true">
         <configuration>
-            <property name="jbossHome">target/jboss-as-${jboss.version:7.1.1.Final}</property>
+            <property name="jbossHome">C:\eplatform\jboss-platform\jboss\jboss-eap-6.0</property>
         </configuration>
     </container>
     
@@ -38,12 +38,6 @@
         </configuration>
     </container>
 
-    <!-- Required configuration for an embedded GlassFish instance -->
-    <container qualifier="glassfish-embedded">
-        <configuration>
-            <property name="bindHttpPort">8080</property>
-            <property name="resourcesXml">src/test/resources-glassfish-embedded/glassfish-resources.xml</property>
-        </configuration>
-    </container>
+
 
 </arquillian>
