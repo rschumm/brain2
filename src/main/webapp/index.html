@@ -181,12 +181,11 @@
 			$.ajax('http://localhost:8080/brain2/rest/brain2/version', {
 				type: "POST", 
 				data: JSON.stringify(versionInfo), 
-				contentType: "application/json; charset=utf-8",
-				success : function(data) {
-					$("#currentVersion").val(data);
-					 $("#newVersion").val(""); 
-				}
-			
+				contentType: "application/json; charset=utf-8",		
+			}).done(function(data) {
+				alert("versions"); 
+				$("#currentVersion").val(data);
+				 $("#newVersion").val(""); 
 			});
 			
 

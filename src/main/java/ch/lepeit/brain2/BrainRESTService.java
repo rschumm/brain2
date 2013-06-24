@@ -66,8 +66,8 @@ public class BrainRESTService {
     public String versionFuerInstallation(VersionInfo versionInfo) {
         log.info("version...");
         String version = brainService.versionFuerInstallation(versionInfo);
-        log.info("...gefunden: " + version); 
-        return version; 
+        log.info("...gefunden: " + String.format("{\"version\": \"%s\"}", version)); 
+        return String.format("{\"version\": \"%s\"}", version); 
     }
     
     
