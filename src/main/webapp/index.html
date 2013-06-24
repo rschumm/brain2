@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>Brain2</title>
@@ -8,192 +8,196 @@
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script type="text/javascript">
-
-
 	$(function() {
 
-		
-
-		
-		
-
 		$("#deployment input").on('keyup', genAll);
-		$("#deployment select").on('change', genAll);
+		$("#deployment select").on('change', genAllUndVersions);
 		//$("#okButton").on('click', neueInstallation()); 
-		$("#okButton").click(neueInstallation); 
+		$("#okButton").click(neueInstallation);
 
-		stagesAbfuellen(); 
-		serversAbfuellen(); 
-		artefakteAbfuellen(); 
+		stagesAbfuellen();
+		serversAbfuellen();
+		artefakteAbfuellen();
 		//versionAbfuellen(); 
-		
+
 	})
 
-	
+	function genAll() {
+		genDeployment();
+		genWartung();
+	}
+
+	function genAllUndVersions() {
+
+		var artifact = $("#artifact").val().split(":");
+		var bundleId = artifact[0];
+		var groupId = artifact[1];
+		var artifactId = artifact[2];
+		var extension = artifact[3];
+
+		var stage = $("#stage").val();
+
+		var runtime = $("#runtime").val().split(":");
+		var url = runtime[0];
+
+		var versionInfo = {
+			"stageName" : stage,
+			"artefaktBudleId" : bundleId,
+			"serverUrl" : url
+		};
+
+		versionAbfuellen(versionInfo);
+		genAll();
+	}
+
 	function berechneServer() {
-			var stage = $("#stage").val();
+		var stage = $("#stage").val();
 
-			var runtime = $("#runtime").val().split(":");
-			var host = runtime[0];
-			var jbnr = runtime[1];
+		var runtime = $("#runtime").val().split(":");
+		var host = runtime[0];
+		var jbnr = runtime[1];
 
-			return host + "." + stage + ".firma.intranet";
+		return host + "." + stage + ".firma.intranet";
 
-		}
+	}
 
-		function berechneJbnr() {
-			var stage = $("#stage").val();
+	function berechneJbnr() {
+		var stage = $("#stage").val();
 
-			var runtime = $("#runtime").val().split(":");
-			var host = runtime[0];
-			var jbnr = runtime[1];
+		var runtime = $("#runtime").val().split(":");
+		var host = runtime[0];
+		var jbnr = runtime[1];
 
-			return jbnr;
+		return jbnr;
 
-		}
+	}
 
-		function genDeployment() {
+	function genDeployment() {
 
-			var artifact = $("#artifact").val().split(":");
-			var bundleId = artifact[0];
-			var groupId = artifact[1];
-			var artifactId = artifact[2];
-			var extension = artifact[3];
+		var artifact = $("#artifact").val().split(":");
+		var bundleId = artifact[0];
+		var groupId = artifact[1];
+		var artifactId = artifact[2];
+		var extension = artifact[3];
 
-			var stage = $("#stage").val();
-			
-			var runtime = $("#runtime").val().split(":");
-			var url = runtime[0];
-			
-			var versionInfo = 
-					{
-						"stageName" : stage,
-						"artefaktBudleId" : bundleId,
-						"serverUrl" : url
-					}; 	
-					
-			
-			
-			
-			versionAbfuellen(versionInfo); 
-			
-			
-			
-			var currVer = $("#currentVersion").val();
-			var newVer = $("#newVersion").val();
+		var stage = $("#stage").val();
 
-			
+		var runtime = $("#runtime").val().split(":");
+		var url = runtime[0];
 
-			var instance = berechneJbnr();
-			var server = berechneServer();
+		var currVer = $("#currentVersion").val();
+		var newVer = $("#newVersion").val();
 
-			$("#out")
-					.val(
-							'Deployment deploy {"tenantDefinedBundleId":"'
-									+ bundleId
-									+ '","groupId":"'
-									+ groupId
-									+ '","artifactId":"'
-									+ artifactId
-									+ '","extension":"'
-									+ extension
-									+ (currVer != '' ? '","currentVersion":"'
-											+ currVer : '')
-									+ '","newVersion":"'
-									+ newVer
-									+ '","primary":"true","restartRequired":"true","repoId":"ch-public"} {"platformRepoId":"ch-public","runtimeName":"'
-									+ bundleId
-									+ '-runtime","asVersion":"jboss-eap-6.0.0","sharedContainer":"false","asHome":"/opt/jet/jboss-platform-0/jboss/'
-									+ instance
-									+ '","platformStage":"'
-									+ stage
-									+ '","operationMode":"DOMAIN","tenant":"axa-ch","stage":"'
-									+ stage
-									+ '"} {"server-group-1":{"'
-									+ server
-									+ '.'
-									+ instance
-									+ '.master":["server-1"]}} {"ch-public":{"repoUrl":"http://mvnrepo.paas.intraxa/nexus/ch-public"}}');
+		var instance = berechneJbnr();
+		var server = berechneServer();
 
-			return false;
-		}
+		$("#out")
+				.val(
+						'Deployment deploy {"tenantDefinedBundleId":"'
+								+ bundleId
+								+ '","groupId":"'
+								+ groupId
+								+ '","artifactId":"'
+								+ artifactId
+								+ '","extension":"'
+								+ extension
+								+ (currVer != '' ? '","currentVersion":"'
+										+ currVer : '')
+								+ '","newVersion":"'
+								+ newVer
+								+ '","primary":"true","restartRequired":"true","repoId":"ch-public"} {"platformRepoId":"ch-public","runtimeName":"'
+								+ bundleId
+								+ '-runtime","asVersion":"jboss-eap-6.0.0","sharedContainer":"false","asHome":"/opt/jet/jboss-platform-0/jboss/'
+								+ instance
+								+ '","platformStage":"'
+								+ stage
+								+ '","operationMode":"DOMAIN","tenant":"axa-ch","stage":"'
+								+ stage
+								+ '"} {"server-group-1":{"'
+								+ server
+								+ '.'
+								+ instance
+								+ '.master":["server-1"]}} {"ch-public":{"repoUrl":"http://mvnrepo.paas.intraxa/nexus/ch-public"}}');
 
-		function genWartung() {
-			var instance = berechneJbnr();
-			var server = berechneServer();
+		return false;
+	}
 
-			$("#enDebug").val(
-					"JBossConfiguration enableRemoteDebugging " + instance
-							+ " " + server + "." + instance + ".master");
-			$("#disDebug").val(
-					"JBossConfiguration disableRemoteDebugging " + instance
-							+ " " + server + "." + instance + ".master");
-			$("#serverinfo").val("JBossInformation getRuntimeInfo " + instance);
-			$("#restart").val(
-					"JBossOperation restartServerGroup " + instance + " "
-							+ server + "." + instance + ".master");
+	function genWartung() {
+		var instance = berechneJbnr();
+		var server = berechneServer();
 
-			return false;
-		}
+		$("#enDebug").val(
+				"JBossConfiguration enableRemoteDebugging " + instance + " "
+						+ server + "." + instance + ".master");
+		$("#disDebug").val(
+				"JBossConfiguration disableRemoteDebugging " + instance + " "
+						+ server + "." + instance + ".master");
+		$("#serverinfo").val("JBossInformation getRuntimeInfo " + instance);
+		$("#restart").val(
+				"JBossOperation restartServerGroup " + instance + " " + server
+						+ "." + instance + ".master");
 
-		function genAll() {
-			genDeployment();
-			genWartung();
+		return false;
+	}
 
-		}
+	function stagesAbfuellen() {
+		$.ajax('http://localhost:8080/brain2/rest/brain2/stages', {
+			success : function(data) {
+				data.forEach(function(d) {
+					$("#stage").append(
+							'<option value="' + d.kurzName.toLowerCase()
+									+ '" >' + d.name + '</option>');
+				})
+			}
+		});
 
-		function stagesAbfuellen(){
-			$.ajax('http://localhost:8080/brain2/rest/brain2/stages', {
-				success: function(data) { 
-					data.forEach(function(d) { 
-						$("#stage").append('<option value="'+d.kurzName.toLowerCase()+'" >'+d.name+'</option>');
-					}) 
-				} 
-			});
+	}
 
-		}
+	function serversAbfuellen() {
+		$.ajax('http://localhost:8080/brain2/rest/brain2/servers', {
+			success : function(data) {
+				data.forEach(function(d) {
+					$("#runtime").append(
+							'<option value="'+d.url+':jb000'+d.number+'" >'
+									+ d.description + '</option>');
+				})
+			}
+		});
 
-		function serversAbfuellen(){
-			$.ajax('http://localhost:8080/brain2/rest/brain2/servers', {
-				success: function(data) { 
-					data.forEach(function(d) { 
-						$("#runtime").append('<option value="'+d.url+':jb000'+d.number+'" >'+d.description+'</option>');
-					}) 
-				}
-			});
+	}
 
-		}
+	function artefakteAbfuellen() {
+		$
+				.ajax(
+						'http://localhost:8080/brain2/rest/brain2/artefakte',
+						{
+							success : function(data) {
+								data
+										.forEach(function(d) {
+											$("#artifact")
+													.append(
+															'<option value="'+d.bundleId+':'+d.groupId+':'+d.artefaktId+':'+d.extension+'" >'
+																	+ d.name
+																	+ '</option>');
+										})
+							}
+						});
 
-		function artefakteAbfuellen(){
-			$.ajax('http://localhost:8080/brain2/rest/brain2/artefakte', {
-				success: function(data) { 
-					data.forEach(function(d) { 
-						$("#artifact").append('<option value="'+d.bundleId+':'+d.groupId+':'+d.artefaktId+':'+d.extension+'" >'+d.name+'</option>');
-					}) 
-				}
-			});
+	}
 
-		}
-		
-		
-		function versionAbfuellen(versionInfo){
-			
-			$.ajax('http://localhost:8080/brain2/rest/brain2/version', {
-				type: "POST", 
-				data: JSON.stringify(versionInfo), 
-				contentType: "application/json; charset=utf-8",		
-			}).done(function(data) {
-				alert("versions"); 
-				$("#currentVersion").val(data);
-				 $("#newVersion").val(""); 
-			});
-			
+	function versionAbfuellen(versionInfo) {
 
+		$.ajax('http://localhost:8080/brain2/rest/brain2/version', {
+			type : "POST",
+			data : JSON.stringify(versionInfo),
+			contentType : "application/json; charset=utf-8",
+		}).done(function(data) {
+			//alert("versions");
+			$("#currentVersion").val(data.version);
+		});
 
-		}
-		
-	
-	
+	}
+
 	function neueInstallation() {
 		var neueVersion = $("#newVersion").val();
 		var server = 'oscar';
@@ -202,21 +206,21 @@
 
 		var postData = {
 			"neueVersion" : neueVersion,
-			"server" : server,
+			"serverUrl" : server,
 			"artefakt" : artefakt,
 			"stage" : stage
-		}; 
+		};
 
 		//Hier POST einbauen. 
 		$.ajax('http://localhost:8080/brain2/rest/brain2/installiere', {
-			type: "POST", 
-			data: JSON.stringify(postData), 
-			contentType: "application/json; charset=utf-8",
+			type : "POST",
+			data : JSON.stringify(postData),
+			contentType : "application/json; charset=utf-8",
 			success : function(data) {
 				$("#currentVersion").val(neueVersion);
-				 $("#newVersion").val(""); 
+				$("#newVersion").val("");
 			}
-		
+
 		});
 		//$("#currentVersion").val(neueVersion);
 
@@ -235,8 +239,8 @@
 	</div>
 
 	<div class="hero-unit">
-		<h1>Welcome to Brain 2.0 - Joël</h1>
-		<p>Generate jetset commands - Edition Joël</p>
+		<h1>Welcome to Brain 2.0 - JoÃ«l</h1>
+		<p>Generate jetset commands - Edition JoÃ«l</p>
 	</div>
 
 
@@ -249,10 +253,8 @@
 			<div>
 
 				<select id="stage" name="stage" placeholder="stage">
-			
-				</select> 
-				
-				<select id="artifact" name="artifact" placeholder="artifact">
+
+				</select> <select id="artifact" name="artifact" placeholder="artifact">
 					<option value="oms-ear:com.axa.ch.oms:oms-ear:ear">oms-ear</option>
 					<option value="csi-ear:com.axa.ch.csi:csi-ear:ear">csi-ear</option>
 
