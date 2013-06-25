@@ -201,14 +201,20 @@
 		var neueVersion = $("#newVersion").val();
 		var runtime = $("#runtime").val().split(":");
 		var server = runtime[0];
-		var artefakt = 'sommer';
-		var stage = "edu";
+
+		var artefact = $("#artifact").val().split(":");
+		var bundleId = artefact[0];
+		var groupId = artefact[1];
+		var artifactId = artefact[2];
+		var extension = artefact[3];
+
+		var stage = $("#stage").val();
 
 		var postData = {
 			"neueVersion" : neueVersion,
 			"serverUrl" : server,
-			"artefakt" : artefakt,
-			"stage" : stage
+			"artefaktBundleId" : bundleId,
+			"stageName" : stage
 		};
 
 		//Hier POST einbauen. 

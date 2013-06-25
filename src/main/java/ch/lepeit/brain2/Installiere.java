@@ -10,9 +10,9 @@ public class Installiere {
 
     String neueVersion;
 
-    String artefakt;
+    String artefaktBundleId;
 
-    String stage;
+    String stageName;
 
     public String getServerUrl() {
         return serverUrl;
@@ -30,20 +30,20 @@ public class Installiere {
         this.neueVersion = neueversion;
     }
 
-    public String getArtefakt() {
-        return artefakt;
+    public String getArtefaktBundleId() {
+        return artefaktBundleId;
     }
 
-    public void setArtefakt(String artefakt) {
-        this.artefakt = artefakt;
+    public void setArtefaktBundleId(String artefakt) {
+        this.artefaktBundleId = artefakt;
     }
 
-    public String getStage() {
-        return stage;
+    public String getStageName() {
+        return stageName;
     }
 
-    public void setStage(String stage) {
-        this.stage = stage;
+    public void setStageName(String stage) {
+        this.stageName = stage;
     }
 
 }

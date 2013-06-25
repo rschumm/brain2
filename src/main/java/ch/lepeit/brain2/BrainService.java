@@ -17,8 +17,6 @@ import ch.lepeit.brain2.model.Version;
 @Stateless
 public class BrainService {
 
-
-
     @PersistenceContext
     private EntityManager em;
 
@@ -61,19 +59,39 @@ public class BrainService {
         Server server = query.getSingleResult();
         installation.setServer(server);
 
+        TypedQuery<DeployArtefakt> query2 = em.createQuery(
+                "Select x from DeployArtefakt x where x.bundleId = :bundleId", DeployArtefakt.class);
+        query2.setParameter("bundleId", installiere.getArtefaktBundleId());
+        DeployArtefakt artefakt = query2.getSingleResult();
+        installation.setDeployArtefakt(artefakt);
+
+        TypedQuery<Stage> query3 = em.createQuery("Select x from Stage x where x.kurzName = :kurzName", Stage.class);
+        query3.setParameter("kurzName", installiere.getStageName());
+        Stage stage = query3.getSingleResult();
+        installation.setStage(stage);
+
+//        TypedQuery<Version> query4 = em.createQuery("Select x from Version x where x.versionsNr = :versionsNr", Version.class); // die Versionsnummer muss natürlich von wo anders geholt werden
+//        query4.setParameter("versionsNr", installiere.getNeueVersion());
+//        Version version = query4.getSingleResult();
+//        installation.setVersion(version);
+        
+        // es braucht noch versionFuerInstallation hier 
+        
         em.persist(installation);
     }
 
     public String versionFuerInstallation(VersionInfo versionInfo) {
-        
-        TypedQuery<Installation> query = em.createQuery("Select i from Installation i where i.stage.name = :stageName and i.server.url = :serverUrl and i.deployArtefakt.bundleId = :bundleId", Installation.class);
+
+        TypedQuery<Installation> query = em
+                .createQuery(
+                        "Select i from Installation i where i.stage.name = :stageName and i.server.url = :serverUrl and i.deployArtefakt.bundleId = :bundleId",
+                        Installation.class);
         query.setParameter("stageName", versionInfo.getStageName());
         query.setParameter("serverUrl", versionInfo.getServerUrl());
         query.setParameter("bundleId", versionInfo.getArtefaktBudleId());
-        
-        List<Installation> resultList = query.getResultList(); 
-         
-        
+
+        List<Installation> resultList = query.getResultList();
+
         return resultList.size() == 0 ? "nichts" : resultList.get(0).getVersion().getVersionsNr();
     }
 
