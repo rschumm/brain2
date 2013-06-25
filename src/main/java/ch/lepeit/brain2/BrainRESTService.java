@@ -31,9 +31,9 @@ public class BrainRESTService {
 
     @Inject
     private BrainService brainService;
-    
-    //SCHARFE SERVICES
-    //=====================================================
+
+    // SCHARFE SERVICES
+    // =====================================================
 
     @GET
     @Path("/stages")
@@ -42,7 +42,7 @@ public class BrainRESTService {
         log.info("liste Stages");
         return brainService.getAllStages();
     }
-    
+
     @GET
     @Path("/servers")
     @Produces(MediaType.APPLICATION_JSON)
@@ -50,7 +50,7 @@ public class BrainRESTService {
         log.info("liste Servers");
         return brainService.getAllServers();
     }
-    
+
     @GET
     @Path("/artefakte")
     @Produces(MediaType.APPLICATION_JSON)
@@ -58,21 +58,17 @@ public class BrainRESTService {
         log.info("liste Artefakte");
         return brainService.getAllDepArts();
     }
-    
-    
+
     @POST
     @Path("/version")
     @Produces(MediaType.APPLICATION_JSON)
     public String versionFuerInstallation(VersionInfo versionInfo) {
         log.info("version...");
         String version = brainService.versionFuerInstallation(versionInfo);
-        log.info("...gefunden: " + String.format("{\"version\": \"%s\"}", version)); 
-        return String.format("{\"version\": \"%s\"}", version); 
+        log.info("...gefunden: " + String.format("{\"version\": \"%s\"}", version));
+        return String.format("{\"version\": \"%s\"}", version);
     }
-    
-    
-    
-    
+
     @POST
     @Path("/installiere")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -80,11 +76,9 @@ public class BrainRESTService {
         log.info("add installation Version: " + installiere.getNeueVersion());
         brainService.addInstallation(installiere);
     }
-    
-    
-    
-    //BASTEL SERVICES
-    //=====================================================
+
+    // BASTEL SERVICES
+    // =====================================================
 
     @GET
     @Path("/{name}")
@@ -95,15 +89,12 @@ public class BrainRESTService {
         return brainService.getStageForName(name);
     }
 
-//    @POST
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    public void addInstallation(Installation installation) {
-//        log.info("add");
-//        brainService.addInstallation(installation);
-//    }
-    
-    
-
+    // @POST
+    // @Consumes(MediaType.APPLICATION_JSON)
+    // public void addInstallation(Installation installation) {
+    // log.info("add");
+    // brainService.addInstallation(installation);
+    // }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -113,7 +104,7 @@ public class BrainRESTService {
     }
 
     /**
-     * nur zum probieren. 
+     * nur zum probieren.
      * @param stages
      */
     @POST
@@ -121,7 +112,7 @@ public class BrainRESTService {
     @Consumes(MediaType.APPLICATION_JSON)
     public void addStage(List<Stage> stages) {
         log.info(stages.get(0).toString());
-//        brainService.add
+        // brainService.add
     }
 
     @GET
@@ -131,7 +122,5 @@ public class BrainRESTService {
         log.info("count");
         return brainService.count();
     }
-    
-
 
 }

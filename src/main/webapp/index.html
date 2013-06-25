@@ -12,7 +12,6 @@
 
 		$("#deployment input").on('keyup', genAll);
 		$("#deployment select").on('change', genAllUndVersions);
-		//$("#okButton").on('click', neueInstallation()); 
 		$("#okButton").click(neueInstallation);
 
 		stagesAbfuellen();
@@ -200,7 +199,8 @@
 
 	function neueInstallation() {
 		var neueVersion = $("#newVersion").val();
-		var server = 'oscar';
+		var runtime = $("#runtime").val().split(":");
+		var server = runtime[0];
 		var artefakt = 'sommer';
 		var stage = "edu";
 
