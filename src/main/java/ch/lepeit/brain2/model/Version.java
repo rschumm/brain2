@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -14,6 +15,7 @@ public class Version {
     private static final long serialVersionUID = 1L;
     
     @Id
+    @GeneratedValue
     private int id;
     
     @OneToMany
@@ -26,7 +28,6 @@ public class Version {
     }
     
     public Version(String versionsNr){
-        this.id = id;
         this.versionsNr = versionsNr;
         installationen = new ArrayList<Installation>();
     }
