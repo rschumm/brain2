@@ -53,6 +53,7 @@ public class BrainService {
     public void addInstallation(Installiere installiere) {
 
         Installation installation = new Installation();
+        Version version = new Version();
 
         TypedQuery<Server> query = em.createQuery("Select x from Server x where x.url = :url", Server.class);
         query.setParameter("url", installiere.getServerUrl());
@@ -70,13 +71,12 @@ public class BrainService {
         Stage stage = query3.getSingleResult();
         installation.setStage(stage);
 
-//        TypedQuery<Version> query4 = em.createQuery("Select x from Version x where x.versionsNr = :versionsNr", Version.class); // die Versionsnummer muss natürlich von wo anders geholt werden
-//        query4.setParameter("versionsNr", installiere.getNeueVersion());
-//        Version version = query4.getSingleResult();
-//        installation.setVersion(version);
+        version.setVersionsNr(installiere.getNeueVersion());
         
-        // es braucht noch versionFuerInstallation hier 
-        
+        em.persist(version);
+
+        installation.setVersion(version);
+
         em.persist(installation);
     }
 
