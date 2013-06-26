@@ -31,11 +31,10 @@ public class Installation {
     private Stage stage;
     
     public Installation() {
-        this(null, null, null, null);
+        //this(null, null, null, null);
     }
     
     public Installation(Server server, DeployArtefakt deployArtefakt, Version version, Stage stage) {
-        this.id = 0;
         this.server = server;
         this.deployArtefakt = deployArtefakt;
         this.version = version;
