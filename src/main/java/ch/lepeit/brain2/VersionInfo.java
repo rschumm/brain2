@@ -2,11 +2,11 @@ package ch.lepeit.brain2;
 
 public class VersionInfo {
 
-    public String getStageName() {
+    public String getStageKurzName() {
         return stageKurzName;
     }
 
-    public void setStageName(String stageName) {
+    public void setStageKurzName(String stageName) {
         this.stageKurzName = stageName;
     }
 

@@ -86,7 +86,7 @@ public class BrainService {
                 .createQuery(
                         "Select i from Installation i where i.stage.kurzName = :stageKurzName and i.server.url = :serverUrl and i.deployArtefakt.bundleId = :bundleId",
                         Installation.class);
-        query.setParameter("stageKurzName", versionInfo.getStageName());
+        query.setParameter("stageKurzName", versionInfo.getStageKurzName());
         query.setParameter("serverUrl", versionInfo.getServerUrl());
         query.setParameter("bundleId", versionInfo.getArtefaktBudleId());
 
