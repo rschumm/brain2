@@ -3,11 +3,11 @@ package ch.lepeit.brain2;
 public class VersionInfo {
 
     public String getStageName() {
-        return stageName;
+        return stageKurzName;
     }
 
     public void setStageName(String stageName) {
-        this.stageName = stageName;
+        this.stageKurzName = stageName;
     }
 
     public String getArtefaktBudleId() {
@@ -26,7 +26,7 @@ public class VersionInfo {
         this.serverUrl = serverUrl;
     }
 
-    String stageName;
+    String stageKurzName;
 
     String artefaktBudleId;
 

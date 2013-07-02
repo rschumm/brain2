@@ -1,6 +1,5 @@
 package ch.lepeit.brain2.model;
 
-import java.awt.geom.Area;
 import java.util.ArrayList;
 import java.util.List;
 

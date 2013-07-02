@@ -12,7 +12,7 @@ public class Installiere {
 
     String artefaktBundleId;
 
-    String stageName;
+    String stageKurzName;
 
     public String getServerUrl() {
         return serverUrl;
@@ -38,12 +38,12 @@ public class Installiere {
         this.artefaktBundleId = artefakt;
     }
 
-    public String getStageName() {
-        return stageName;
+    public String getStageKurzName() {
+        return stageKurzName;
     }
 
-    public void setStageName(String stage) {
-        this.stageName = stage;
+    public void setStageKurzName(String stage) {
+        this.stageKurzName = stage;
     }
 
 }

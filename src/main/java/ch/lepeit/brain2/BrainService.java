@@ -47,7 +47,7 @@ public class BrainService {
     }
 
     public int count() {
-        return (int) em.createQuery("SELECT COUNT x FROM Stage x").getSingleResult();
+        return (int) em.createQuery("SELECT COUNT(x) FROM Stage x").getSingleResult();
     }
 
     public void addInstallation(Installiere installiere) {
@@ -67,7 +67,7 @@ public class BrainService {
         installation.setDeployArtefakt(artefakt);
 
         TypedQuery<Stage> query3 = em.createQuery("Select x from Stage x where x.kurzName = :kurzName", Stage.class);
-        query3.setParameter("kurzName", installiere.getStageName());
+        query3.setParameter("kurzName", installiere.getStageKurzName());
         Stage stage = query3.getSingleResult();
         installation.setStage(stage);
 
@@ -84,9 +84,9 @@ public class BrainService {
 
         TypedQuery<Installation> query = em
                 .createQuery(
-                        "Select i from Installation i where i.stage.name = :stageName and i.server.url = :serverUrl and i.deployArtefakt.bundleId = :bundleId",
+                        "Select i from Installation i where i.stage.kurzName = :stageKurzName and i.server.url = :serverUrl and i.deployArtefakt.bundleId = :bundleId",
                         Installation.class);
-        query.setParameter("stageName", versionInfo.getStageName());
+        query.setParameter("stageKurzName", versionInfo.getStageName());
         query.setParameter("serverUrl", versionInfo.getServerUrl());
         query.setParameter("bundleId", versionInfo.getArtefaktBudleId());
 
@@ -99,7 +99,4 @@ public class BrainService {
         em.persist(version);
     }
 
-    // public Installation getInsForVers() {
-    // return em.createQuery("SELECT x FROM ");
-    // }
 }
