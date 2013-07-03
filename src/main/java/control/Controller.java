@@ -1,4 +1,4 @@
-package ch.lepeit.brain2.jsf;
+package control;
 
 public class Controller {
 
