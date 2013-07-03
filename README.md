@@ -45,7 +45,13 @@ URLs
 Initial Aufgabenstellung, auf JBoss EAP 6 deployd:  
 
 GUI:  
+
+twitter bootstrap und jQuery:  
 http://localhost:8080/brain2/
+
+JSF2: 
+http://localhost:8080/brain2/jsf.jsf  
+
 
 REST-Service:  
 http://localhost:8080/brain2/rest/brain2
