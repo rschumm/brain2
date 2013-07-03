@@ -8,6 +8,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import org.h2.index.SingleRowCursor;
+
 import ch.lepeit.brain2.model.DeployArtefakt;
 import ch.lepeit.brain2.model.Installation;
 import ch.lepeit.brain2.model.Server;
@@ -72,7 +74,7 @@ public class BrainService {
         installation.setStage(stage);
 
         version.setVersionsNr(installiere.getNeueVersion());
-        
+
         em.persist(version);
 
         installation.setVersion(version);
@@ -84,11 +86,12 @@ public class BrainService {
 
         TypedQuery<Installation> query = em
                 .createQuery(
-                        "Select i from Installation i where i.stage.kurzName = :stageKurzName and i.server.url = :serverUrl and i.deployArtefakt.bundleId = :bundleId",
+                        "Select i from Installation i Where i.version.id = (Select max(i.id) FROM Installation where i.stage.kurzName = :stageKurzName and i.server.url = :serverUrl and i.deployArtefakt.bundleId = :bundleId)",
                         Installation.class);
         query.setParameter("stageKurzName", versionInfo.getStageKurzName());
         query.setParameter("serverUrl", versionInfo.getServerUrl());
         query.setParameter("bundleId", versionInfo.getArtefaktBudleId());
+        
 
         List<Installation> resultList = query.getResultList();
 
