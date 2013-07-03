@@ -83,7 +83,11 @@ public class BrainService {
     }
 
     public String versionFuerInstallation(VersionInfo versionInfo) {
-
+        
+        TypedQuery<Installation> abfrage = em.createQuery("Select i from Installation i FROM Installation where i.stage.kurzName = :stageKurzName and i.server.url = :serverUrl and i.deployArtefakt.bundleId = :bundleId")
+                query.setParameter("stageKurzName", versionInfo.getStageKurzName());
+                query.setParameter("serverUrl", versionInfo.getServerUrl());
+                query.setParameter("bundleId", versionInfo.getArtefaktBudleId());
         TypedQuery<Installation> query = em
                 .createQuery(
                         "Select i from Installation i Where i.version.id = (Select max(i.id) FROM Installation where i.stage.kurzName = :stageKurzName and i.server.url = :serverUrl and i.deployArtefakt.bundleId = :bundleId)",
