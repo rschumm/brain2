@@ -16,28 +16,75 @@
     limitations under the License.
 -->
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-   xmlns:ui="http://java.sun.com/jsf/facelets"
-   xmlns:f="http://java.sun.com/jsf/core"
-   xmlns:h="http://java.sun.com/jsf/html"
-   template="/WEB-INF/templates/default.xhtml">
-   <ui:define name="content">
-      <h1>Welcome to JBoss!</h1>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+		<h1>Welcome to Brain 3.0</h1>
+		<p>Generate jetset commands - Edition JSF</p>
 
-      <div>
-         <p>You have successfully deployed a Java EE 6 Enterprise Application.</p>
-         <h3>Your application can run on:</h3>
-         <img src="resources/gfx/dualbrand_as7eap.png"/>
-      </div>
+		<h:form>
+			<fieldset class="fieldset" id="deployment">
+				<legend>Deployment</legend>
+				<rich:panel>
+					<f:facet name="header">
+						<h:outputText value="Simples select"></h:outputText>
+					</f:facet>
+					<rich:select>
+						<f:selectItem id="stage" itemValue="0" itemLabel="Option 1 " />
+					</rich:select>
+					<rich:select>
+						<f:selectItem id="artefakt" itemValue="0" itemLabel="Option 1" />
+					</rich:select>
+					<rich:select>
+						<f:selectItem id="server" itemValue="0" itemLabel="Option 1" />
+					</rich:select>
+					<rich:inplaceInput defaultLabel="currentVersion" />
+					<rich:inplaceInput defaultLabel="newVersion" />
+					<a4j:commandButton value="Speichern" render="out" execute="@form" />
+				</rich:panel>
 
-      <h:form id="reg">
-         <h2>Member Registration</h2>
-         <p>Enforces annotation-based constraints defined on the model class.</p>
+				<div>
+					<textarea id="out" name="out" style="width: 100%; height: 100px;"></textarea>
+				</div>
+			</fieldset>
+			<fieldset class="fieldset" id="wartung">
+				<legend>Wartung</legend>
+				<div class="form-horizontal">
+					<div class="control-group">
+						<label class="control-label" for="serverinfo">serverinfo</label>
+						<div class="controls">
+							<input type="text" id="serverinfo" placeholder="serverinfo"
+								style="width: 100%;">
+						</div>
+					</div>
 
-      </h:form>
-      <h2>Members</h2>
-      <h:panelGroup rendered="#{empty members}">
-         <em>No registered members.</em>
-      </h:panelGroup>
-  
-   </ui:define>
+					<div class="control-group">
+						<label class="control-label" for="enDebug">enable debug</label>
+						<div class="controls">
+							<input type="text" id="enDebug" placeholder="enable debug"
+								style="width: 100%;">
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="disDebug">disable debug</label>
+						<div class="controls">
+							<input type="text" id="disDebug" placeholder="disable debug"
+								style="width: 100%;">
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="restart">restart server</label>
+						<div class="controls">
+							<input type="text" id="restart" placeholder="restart server"
+								style="width: 100%;">
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</h:form>
+	</ui:define>
 </ui:composition>
