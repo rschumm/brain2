@@ -1,4 +1,4 @@
-package control;
+package ch.lepeit.brain2;
 
 import java.util.logging.Logger;
 
@@ -7,7 +7,6 @@ import javax.inject.Named;
 
 import ch.lepeit.brain2.model.Version;
 
-import ch.lepeit.brain2.BrainService;
 
 @Named
 //scope.... 
