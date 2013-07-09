@@ -27,25 +27,16 @@
 		<p>Generate jetset commands - Edition JSF</p>
 
 		<h:form>
+			<a4j:outputPanel id="titel">
+				<h2>Stage: #{controller.selectedStage.name}</h2>
+			</a4j:outputPanel>
 			<fieldset class="fieldset" id="deployment">
 				<legend>Deployment</legend>
-				<rich:panel>
-					<f:facet name="header">
-						<h:outputText value="Simples select"></h:outputText>
-					</f:facet>
-					<rich:select>
-						<f:selectItem id="stage" itemValue="0" itemLabel="Option 1 " />
-					</rich:select>
-					<rich:select>
-						<f:selectItem id="artefakt" itemValue="0" itemLabel="Option 1" />
-					</rich:select>
-					<rich:select>
-						<f:selectItem id="server" itemValue="0" itemLabel="Option 1" />
-					</rich:select>
-					<rich:inplaceInput defaultLabel="currentVersion" />
-					<rich:inplaceInput defaultLabel="newVersion" />
-					<a4j:commandButton value="Speichern" render="out" execute="@form" />
-				</rich:panel>
+				<h:selectOneMenu value="#{controller.selectedStage}">
+					<f:selectItems value="#{controller.getAllStages()}" var="s"
+						itemLabel="#{s.name}" itemValue="#{s.kurzName}" />
+					<a4j:ajax event="valueChange" render="titel" />
+				</h:selectOneMenu>
 
 				<div>
 					<textarea id="out" name="out" style="width: 100%; height: 100px;"></textarea>
@@ -58,7 +49,7 @@
 						<label class="control-label" for="serverinfo">serverinfo</label>
 						<div class="controls">
 							<input type="text" id="serverinfo" placeholder="serverinfo"
-								style="width: 100%;"/>
+								style="width: 100%;" />
 						</div>
 					</div>
 
@@ -66,7 +57,7 @@
 						<label class="control-label" for="enDebug">enable debug</label>
 						<div class="controls">
 							<input type="text" id="enDebug" placeholder="enable debug"
-								style="width: 100%;"/>
+								style="width: 100%;" />
 						</div>
 					</div>
 
@@ -74,7 +65,7 @@
 						<label class="control-label" for="disDebug">disable debug</label>
 						<div class="controls">
 							<input type="text" id="disDebug" placeholder="disable debug"
-								style="width: 100%;"/>
+								style="width: 100%;" />
 						</div>
 					</div>
 
@@ -82,7 +73,7 @@
 						<label class="control-label" for="restart">restart server</label>
 						<div class="controls">
 							<input type="text" id="restart" placeholder="restart server"
-								style="width: 100%;"/>
+								style="width: 100%;" />
 						</div>
 					</div>
 				</div>
