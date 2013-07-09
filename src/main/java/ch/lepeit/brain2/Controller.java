@@ -1,5 +1,6 @@
 package ch.lepeit.brain2;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -14,7 +15,7 @@ import ch.lepeit.brain2.model.Version;
 
 @Named
 @ConversationScoped 
-public class Controller {
+public class Controller implements Serializable {
 
     Version version; 
     
