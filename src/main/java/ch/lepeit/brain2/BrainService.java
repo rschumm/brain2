@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.h2.index.SingleRowCursor;
+import org.jboss.resteasy.util.FindAnnotation;
 
 import ch.lepeit.brain2.model.DeployArtefakt;
 import ch.lepeit.brain2.model.Installation;
@@ -55,7 +56,6 @@ public class BrainService {
     public void addInstallation(Installiere installiere) {
 
         Installation installation = new Installation();
-        Version version = new Version();
 
         TypedQuery<Server> query = em.createQuery("Select x from Server x where x.url = :url", Server.class);
         query.setParameter("url", installiere.getServerUrl());
@@ -72,22 +72,26 @@ public class BrainService {
         query3.setParameter("kurzName", installiere.getStageKurzName());
         Stage stage = query3.getSingleResult();
         installation.setStage(stage);
+        
+        TypedQuery<Installation> query4 = em.createQuery("Select x from Installation x", Installation.class);
+        Installation installation2 = query4.getSingleResult();
+        if (installation2.equals(null)) {
 
-        version.setVersionsNr(installiere.getNeueVersion());
+//            version.setVersionsNr(installiere.getNeueVersion());
+//            em.persist(version);
+//            installation.setVersion(version);
+//            em.persist(installation);
+//            installation.setVersion(installiere.)
+//        } else {
+//            // version.setVersionsNr(version.getVersionsNr());
+//            installation.setVersion(version);
+//            em.flush();
+            }
 
-        em.persist(version);
-
-        installation.setVersion(version);
-
-        em.persist(installation);
     }
 
     public String versionFuerInstallation(VersionInfo versionInfo) {
-        
-        TypedQuery<Installation> abfrage = em.createQuery("Select i from Installation i FROM Installation where i.stage.kurzName = :stageKurzName and i.server.url = :serverUrl and i.deployArtefakt.bundleId = :bundleId")
-                query.setParameter("stageKurzName", versionInfo.getStageKurzName());
-                query.setParameter("serverUrl", versionInfo.getServerUrl());
-                query.setParameter("bundleId", versionInfo.getArtefaktBudleId());
+
         TypedQuery<Installation> query = em
                 .createQuery(
                         "Select i from Installation i Where i.version.id = (Select max(i.id) FROM Installation where i.stage.kurzName = :stageKurzName and i.server.url = :serverUrl and i.deployArtefakt.bundleId = :bundleId)",
@@ -95,7 +99,6 @@ public class BrainService {
         query.setParameter("stageKurzName", versionInfo.getStageKurzName());
         query.setParameter("serverUrl", versionInfo.getServerUrl());
         query.setParameter("bundleId", versionInfo.getArtefaktBudleId());
-        
 
         List<Installation> resultList = query.getResultList();
 
