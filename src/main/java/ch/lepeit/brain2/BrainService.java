@@ -77,15 +77,15 @@ public class BrainService {
         Installation installation2 = query4.getSingleResult();
         if (installation2.equals(null)) {
 
-//            version.setVersionsNr(installiere.getNeueVersion());
-//            em.persist(version);
-//            installation.setVersion(version);
-//            em.persist(installation);
-//            installation.setVersion(installiere.)
-//        } else {
-//            // version.setVersionsNr(version.getVersionsNr());
-//            installation.setVersion(version);
-//            em.flush();
+            installation.setVersion(version);
+            em.persist(installation);
+            installation.setVersion(installation);
+            em.persist(installation);
+            installation.setVersion(installiere.)
+        } else {
+            // version.setVersionsNr(version.getVersionsNr());
+            installation.setVersion(version);
+            em.flush();
             }
 
     }
