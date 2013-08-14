@@ -72,7 +72,7 @@ public class BrainService {
         installation.setStage(stage);
 
         version.setVersionsNr(installiere.getNeueVersion());
-        
+
         em.persist(version);
 
         installation.setVersion(version);
