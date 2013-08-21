@@ -1,6 +1,10 @@
 package com.axa.ch.brokernet.util;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.Properties;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.inject.Named;
@@ -19,12 +23,21 @@ public class VersionsInfo implements Serializable {
         //return System.getProperty(build.property)
     }
 
-    public String getVersionNr() {
+    public String getVersionNr() throws IOException {
         System.out.println("blubb 1");
         
+        Properties props = new Properties();
+//        FileInputStream in = new FileInputStream("system.properties");
+//        props.load(in);
+//        in.close();
+//        String str = props.getProperty("version");
+
         String display = System.getProperty("broker.displayVersion");
         if (display.equals("true")) {
-            return getSystemInfo();
+            FileInputStream in = new FileInputStream("src/main/resources/build.properties");
+            props.load(in);
+            in.close();
+            return props.getProperty("version");
         }
         String leer = "";
         return leer;
