@@ -1,7 +1,8 @@
-brain 2.0
+brain 2.0 - Demo für KnowHow Transfer
 ======
 
 Einführungsaufgabe für Joël Niederhauser
+Demo für KnowHow Transfer
 
 
 
