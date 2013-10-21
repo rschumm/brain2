@@ -110,6 +110,7 @@ public class BrainRESTService {
     @POST
     @Path("/addStages")
     @Consumes(MediaType.APPLICATION_JSON)
+    
     public void addStage(List<Stage> stages) {
         log.info(stages.get(0).toString());
         // brainService.add

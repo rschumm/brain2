@@ -15,71 +15,154 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	template="/WEB-INF/templates/default.xhtml"
-	xmlns:rich="http://richfaces.org/rich"
-	xmlns:a4j="http://richfaces.org/a4j">
-	<ui:define name="content">
-		<h1>Welcome to Brain 3.0</h1>
-		<p>Generate jetset commands - Edition JSF</p>
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="
+	xmlns:p="http://primefaces.org/ui">
 
-		<h:form>
+<h:head>
+	<title>Brain2</title>
+	<link rel="stylesheet" type="text/css"
+		href="bootstrap/css/bootstrap.css" />
+</h:head>
 
-			<a4j:outputPanel id="titel">
-				<h2>Stage: #{controller.selectedStage.name}</h2>
-			</a4j:outputPanel>
-			<fieldset class="fieldset" id="deployment">
-				<legend>Deployment</legend>
-				<h:selectOneMenu value="#{controller.selectedStage}">
-					<f:selectItems value="#{controller.getAllStages()}" var="s"
-						itemLabel="#{s.name}" itemValue="#{s.kurzName}" />
-					<a4j:ajax event="valueChange" render="titel" />
-				</h:selectOneMenu>
+<h:body style="padding: 20px;">
 
-				<div>
-					<textarea id="out" name="out" style="width: 100%; height: 100px;"></textarea>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<a class="brand" href="#">Brain 3.0</a>
+			<ul class="nav">
+				<li class="active"><a href="#">Generate deployment commands</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="hero-unit">
+		<h1>Welcome to Brain 3.0 - Joël</h1>
+		<p>Generate jetset commands - Edition Joël</p>
+	</div>
+
+	<form>
+		<p:outputPanel deferred="true">
+			<h2>Stage: #{controller.selectedStage.name}</h2>
+		</p:outputPanel>
+		<fieldset class="fieldset" id="deployment">
+			<legend>Deployment</legend>
+			<p:selectOneMenu value="#{controller.getAllStages()}">
+				<f:selectItems value="#{controller.getAllStages()}" var="s"
+					itemLabel="#{s.name}" itemValue="#{s.kurzName}" />
+				<a4j:ajax event="valueChange" render="titel" />
+			</p:selectOneMenu>
+			<h:selectOneMenu value="#{controller.selectedStage}">
+				<f:selectItems value="#{controller.getAllStages()}" var="s"
+					itemLabel="#{s.name}" itemValue="#{s.kurzName}" />
+				<a4j:ajax event="valueChange" render="titel" />
+			</h:selectOneMenu>
+
+			<div>
+				<textarea id="out" name="out" style="width: 100%; height: 100px;"></textarea>
+			</div>
+		</fieldset>
+
+		<fieldset class="fieldset" id="wartung">
+			<legend>Wartung</legend>
+			<div class="form-horizontal">
+				<div class="control-group">
+					<label class="control-label" for="serverinfo">serverinfo</label>
+					<div class="controls">
+						<input type="text" id="serverinfo" placeholder="serverinfo"
+							style="width: 100%;" />
+					</div>
 				</div>
-			</fieldset>
-			<fieldset class="fieldset" id="wartung">
-				<legend>Wartung</legend>
-				<div class="form-horizontal">
-					<div class="control-group">
-						<label class="control-label" for="serverinfo">serverinfo</label>
-						<div class="controls">
-							<input type="text" id="serverinfo" placeholder="serverinfo"
-								style="width: 100%;" />
-						</div>
-					</div>
 
-					<div class="control-group">
-						<label class="control-label" for="enDebug">enable debug</label>
-						<div class="controls">
-							<input type="text" id="enDebug" placeholder="enable debug"
-								style="width: 100%;" />
-						</div>
-					</div>
-
-					<div class="control-group">
-						<label class="control-label" for="disDebug">disable debug</label>
-						<div class="controls">
-							<input type="text" id="disDebug" placeholder="disable debug"
-								style="width: 100%;" />
-						</div>
-					</div>
-
-					<div class="control-group">
-						<label class="control-label" for="restart">restart server</label>
-						<div class="controls">
-							<input type="text" id="restart" placeholder="restart server"
-								style="width: 100%;" />
-
-						</div>
+				<div class="control-group">
+					<label class="control-label" for="enDebug">enable debug</label>
+					<div class="controls">
+						<input type="text" id="enDebug" placeholder="enable debug"
+							style="width: 100%;" />
 					</div>
 				</div>
-			</fieldset>
-		</h:form>
-	</ui:define>
-</ui:composition>
+
+				<div class="control-group">
+					<label class="control-label" for="disDebug">disable debug</label>
+					<div class="controls">
+						<input type="text" id="disDebug" placeholder="disable debug"
+							style="width: 100%;" />
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="restart">restart server</label>
+					<div class="controls">
+						<input type="text" id="restart" placeholder="restart server"
+							style="width: 100%;" />
+
+					</div>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+
+	<p:accordionPanel multiple="true">
+
+		<p:tab title="Remote-Debugging">
+			<h:panelGrid columns="2" cellpadding="10">
+				<pre>
+jetomsdevt1.dev.firma.intranet:21000
+jetomsdevt2.dev.firma.intranet:21001
+</pre>
+			</h:panelGrid>
+		</p:tab>
+		<p:tab title="Admin Consolen">
+			<h:panelGrid columns="2" cellpadding="10">
+				<p>
+					<a href="http://jetomsdevt1.dev.firma.intranet:16500/console">jetomsdevt1
+						(oms)</a> <br /> user: admin password: server-jb0000
+				</p>
+				<p>
+					<a href="http://jetomsdevt2.dev.firma.intranet:16501/console">jetomsdevt2
+						(csi)</a> <br /> user: admin password: server-jb0001
+				</p>
+			</h:panelGrid>
+		</p:tab>
+		<p:tab title="App-Links">
+			<h:panelGrid columns="2" cellpadding="10">
+				<p>
+					<a href="http://jetomsdevt1.dev.firma.intranet:17000/oms">oms
+						DEV</a> <br />
+				</p>
+				<p>
+					<a href="http://jetomsdevt2.dev.firma.intranet:17001/csi">csi
+						DEV</a> <br />
+				</p>
+			</h:panelGrid>
+		</p:tab>
+		<p:tab title="Andere Befehle, Logs">
+			<h:panelGrid columns="2" cellpadding="10">
+				<p>
+					Start JetSet Shell
+					<code> /opt/jet/jetset/bin/jetset.sh -s </code>
+				</p>
+				<p>
+					Logs
+					<code> tail -f
+						/opt/jet/jboss-platform-0/jboss/jb0000/domain/servers/server-1/log/server.log
+					</code>
+				</p>
+				<p>
+					Deployment-Ordner
+					<code> /opt/jet/jboss-platform-0/jboss/jb0000/_deployment </code>
+				</p>
+				<p>
+					Domain-Config
+					<code>
+						/opt/jet/jboss-platform-0/jboss/jb0000/domain/configuration/domain.xml
+					</code>
+				</p>
+			</h:panelGrid>
+		</p:tab>
+	</p:accordionPanel>
+</h:body>
+</html>
