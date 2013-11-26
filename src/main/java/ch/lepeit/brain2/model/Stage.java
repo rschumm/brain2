@@ -1,6 +1,8 @@
 package ch.lepeit.brain2.model;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -22,6 +24,10 @@ public class Stage implements Serializable {
     public int getStage_ID() {
         return id;
     }
+    
+    @OneToMany(mappedBy="server")
+    @Transient
+    private List<Installation> installationen;
 
     public void setStage_ID(int stage_ID) {
         id = stage_ID;

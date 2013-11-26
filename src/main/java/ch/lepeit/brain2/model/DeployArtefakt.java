@@ -1,5 +1,6 @@
 package ch.lepeit.brain2.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
-public class DeployArtefakt {
+public class DeployArtefakt implements Serializable{
     private static final long serialVersionUID = 1L;
     
     @Id

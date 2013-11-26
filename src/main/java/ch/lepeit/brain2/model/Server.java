@@ -1,5 +1,6 @@
 package ch.lepeit.brain2.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,26 +11,27 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
-public class Server {
+public class Server implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     private int id;
-    
+
     private String url;
+
     private int number;
+
     private String description;
-    
-    @OneToMany(mappedBy="server")
+
+    @OneToMany(mappedBy = "server")
     @Transient
     private List<Installation> installationen;
 
     public Server() {
-        this(null,0);
+        this(null, 0);
     }
 
     public Server(String url, int number) {
-        this.id = id;
         this.number = number;
         this.url = url;
         installationen = new ArrayList<Installation>();
@@ -82,6 +84,5 @@ public class Server {
     public void setInstallationen(List<Installation> installationen) {
         this.installationen = installationen;
     }
-    
-    
+
 }
