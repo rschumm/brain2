@@ -19,8 +19,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:a4j="
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:a4j="http://richfaces.org/a4j" xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>Brain2</title>
@@ -40,72 +39,99 @@
 	</div>
 
 	<div class="hero-unit">
-		<h1>Welcome to Brain 3.0 - Joël</h1>
-		<p>Generate jetset commands - Edition Joël</p>
+		<h1>Welcome to Brain 3.0</h1>
+		<p>Generate jetset commands - JSF Edition</p>
 	</div>
 
-	<form>
-		<p:outputPanel deferred="true">
-			<h2>Stage: #{controller.selectedStage.name}</h2>
-		</p:outputPanel>
-		<fieldset class="fieldset" id="deployment">
-			<legend>Deployment</legend>
-			<p:selectOneMenu value="#{controller.getAllStages()}">
-				<f:selectItems value="#{controller.getAllStages()}" var="s"
-					itemLabel="#{s.name}" itemValue="#{s.kurzName}" />
-				<a4j:ajax event="valueChange" render="titel" />
-			</p:selectOneMenu>
-			<h:selectOneMenu value="#{controller.selectedStage}">
-				<f:selectItems value="#{controller.getAllStages()}" var="s"
-					itemLabel="#{s.name}" itemValue="#{s.kurzName}" />
-				<a4j:ajax event="valueChange" render="titel" />
-			</h:selectOneMenu>
+	<h:form id="form">
+		<legend>Deployment</legend>
 
-			<div>
-				<textarea id="out" name="out" style="width: 100%; height: 100px;"></textarea>
-			</div>
-		</fieldset>
+		<p:selectOneMenu id="stage" value="#{controller.selectedStage}"
+			onchange="#{controller.generate()}">
+			<f:selectItems value="#{controller.allStages}" var="s"
+				itemLabel="#{s.name}" itemValue="#{s.stage_ID}" />
+			<f:ajax render="output version" event="valueChange" />
 
-		<fieldset class="fieldset" id="wartung">
-			<legend>Wartung</legend>
-			<div class="form-horizontal">
-				<div class="control-group">
-					<label class="control-label" for="serverinfo">serverinfo</label>
-					<div class="controls">
-						<input type="text" id="serverinfo" placeholder="serverinfo"
-							style="width: 100%;" />
-					</div>
-				</div>
+		</p:selectOneMenu>
 
-				<div class="control-group">
-					<label class="control-label" for="enDebug">enable debug</label>
-					<div class="controls">
-						<input type="text" id="enDebug" placeholder="enable debug"
-							style="width: 100%;" />
-					</div>
-				</div>
+		<p:selectOneMenu id="dep" value="#{controller.selectedDepArts}"
+			onchange="#{controller.generate()}">
+			<f:selectItems value="#{controller.allDepArts}" var="d"
+				itemLabel="#{d.name}" itemValue="#{d.id}" />
+			<f:ajax render="output version" event="valueChange" />
 
-				<div class="control-group">
-					<label class="control-label" for="disDebug">disable debug</label>
-					<div class="controls">
-						<input type="text" id="disDebug" placeholder="disable debug"
-							style="width: 100%;" />
-					</div>
-				</div>
+		</p:selectOneMenu>
 
-				<div class="control-group">
-					<label class="control-label" for="restart">restart server</label>
-					<div class="controls">
-						<input type="text" id="restart" placeholder="restart server"
-							style="width: 100%;" />
+		<p:selectOneMenu id="server" value="#{controller.selectedServer}"
+			onchange="#{controller.generate()}">
+			<f:selectItems value="#{controller.allServers}" var="s"
+				itemLabel="#{s.description}" itemValue="#{s.id}" />
+			<f:ajax render="output version" event="valueChange" />
 
-					</div>
-				</div>
-			</div>
-		</fieldset>
-	</form>
+		</p:selectOneMenu>
 
+		<p:inputText id="version" value="#{controller.currentVersion}"
+			onchange="#{controller.generate()}" alt="currentVersion"
+			readonly="true">
+
+		</p:inputText>
+		<p:inputText id="newVersion" value="#{controller.newVersion}"
+			alt="newversion">
+			<f:ajax render="output version" event="valueChange" />
+
+		</p:inputText>
+		<br />
+		<h:commandButton value="speichern">
+			<f:ajax render="output version" listener="#{controller.save()}" event="click" />
+		</h:commandButton>
+
+		<br />
+
+		<p:inputTextarea id="output" value="#{controller.generatedString}"
+			style="width: 100%; height: 120px;" />
+
+	</h:form>
 	<p:accordionPanel multiple="true">
+		<p:tab title="Wartung">
+
+			<fieldset class="fieldset" id="wartung">
+				<div class="form-horizontal">
+					<div class="control-group">
+						<label class="control-label" for="serverinfo">serverinfo</label>
+						<div class="controls">
+							<input type="text" id="serverinfo" placeholder="serverinfo"
+								style="width: 100%;" />
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="enDebug">enable debug</label>
+						<div class="controls">
+							<input type="text" id="enDebug" placeholder="enable debug"
+								style="width: 100%;" />
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="disDebug">disable debug</label>
+						<div class="controls">
+							<input type="text" id="disDebug" placeholder="disable debug"
+								style="width: 100%;" />
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="restart">restart server</label>
+						<div class="controls">
+							<input type="text" id="restart" placeholder="restart server"
+								style="width: 100%;" />
+
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</p:tab>
+
 
 		<p:tab title="Remote-Debugging">
 			<h:panelGrid columns="2" cellpadding="10">
