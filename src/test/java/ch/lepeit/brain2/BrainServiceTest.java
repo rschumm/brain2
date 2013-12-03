@@ -1,10 +1,6 @@
 package ch.lepeit.brain2;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
-import org.junit.Test;
-
 import ch.lepeit.brain2.model.Stage;
 
 public class BrainServiceTest {

@@ -8,8 +8,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import org.h2.constant.SysProperties;
-
 import ch.lepeit.brain2.model.DeployArtefakt;
 import ch.lepeit.brain2.model.Installation;
 import ch.lepeit.brain2.model.Server;

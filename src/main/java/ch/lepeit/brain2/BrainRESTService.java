@@ -19,7 +19,6 @@ import ch.lepeit.brain2.model.Server;
 
 import ch.lepeit.brain2.model.Version;
 
-import ch.lepeit.brain2.model.Installation;
 import ch.lepeit.brain2.model.Stage;
 
 @Path("/brain2")

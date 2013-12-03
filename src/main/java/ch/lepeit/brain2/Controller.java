@@ -1,7 +1,6 @@
 package ch.lepeit.brain2;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -10,14 +9,9 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.omg.CORBA.OMGVMCID;
-
-import ch.lepeit.brain2.model.Installation;
-
 import ch.lepeit.brain2.model.DeployArtefakt;
 import ch.lepeit.brain2.model.Server;
 import ch.lepeit.brain2.model.Stage;
-import ch.lepeit.brain2.model.Version;
 
 @Named
 @SessionScoped
