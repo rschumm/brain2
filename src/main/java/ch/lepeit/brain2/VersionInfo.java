@@ -1,5 +1,6 @@
 package ch.lepeit.brain2;
 
+
 public class VersionInfo {
 
     public String getStageKurzName() {

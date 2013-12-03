@@ -44,11 +44,11 @@ public class Controller implements Serializable {
     private String selectedStage;
 
     @PostConstruct
-    private void init() {
+    public void init() {
         selectedDepArts = String.valueOf(brainService.getAllDepArts().get(0).getId());
         selectedServer = String.valueOf(brainService.getAllServers().get(0).getId());
         selectedStage = String.valueOf(brainService.getAllStages().get(0).getStage_ID());
-        generateCurrentVersion();
+        refreshCurrentVersion();
     }
 
     public List<Stage> getAllStages() {
@@ -82,12 +82,13 @@ public class Controller implements Serializable {
         installiere.setStageKurzName(getStage(selectedStage).getKurzName());
 
         brainService.addInstallation(installiere);
-        generateCurrentVersion();
+        // refreshCurrentVersion();
 
     }
 
-    public void generateCurrentVersion() {
+    public void refreshCurrentVersion() {
 
+        log.info("in refresh Current Version");
         DeployArtefakt artefakt = getDeployArtefakt(selectedDepArts);
         Server server = getServer(selectedServer);
         Stage stage = getStage(selectedStage);
@@ -97,8 +98,8 @@ public class Controller implements Serializable {
         versionInfo.setServerUrl(server.getUrl());
         versionInfo.setStageKurzName(stage.getKurzName());
 
-        setCurrentVersion(brainService.versionFuerInstallation(versionInfo) != null ? brainService
-                .versionFuerInstallation(versionInfo) : "nichts");
+        setCurrentVersion(brainService.versionFuerInstallation(versionInfo));
+        log.info("foundVersion: " + brainService.versionFuerInstallation(versionInfo));
     }
 
     public void generate() {
@@ -107,14 +108,14 @@ public class Controller implements Serializable {
         DeployArtefakt artefakt = getDeployArtefakt(selectedDepArts);
         Server server = getServer(selectedServer);
         Stage stage = getStage(selectedStage);
-
-        log.info("selectedDepArts " + selectedDepArts);
-        log.info("selectedServer " + selectedServer);
-        log.info("selectedStage " + selectedStage);
+        //
+        // log.info("selectedDepArts " + selectedDepArts);
+        // log.info("selectedServer " + selectedServer);
+        // log.info("selectedStage " + selectedStage);
         log.info("version " + getCurrentVersion());
 
-        generateCurrentVersion();
-        
+        // refreshCurrentVersion();
+
         setGeneratedString("Deployment deploy {\"tenantDefinedBundleId\":\""
                 + artefakt.getBundleId()
                 + "\",\"groupId\":\""
@@ -143,7 +144,6 @@ public class Controller implements Serializable {
                 + "jb000"
                 + server.getNumber()
                 + ".master\":[\"server-1\"]}} {\"ch-public\":{\"repoUrl\":\"http://mvnrepo.paas.intraxa/nexus/ch-public\"}}");
-
 
     }
 
@@ -175,6 +175,8 @@ public class Controller implements Serializable {
     }
 
     public String getCurrentVersion() {
+        // Workaround
+        refreshCurrentVersion();
         return currentVersion;
     }
 

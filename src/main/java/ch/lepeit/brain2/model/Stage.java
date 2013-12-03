@@ -25,7 +25,7 @@ public class Stage implements Serializable {
         return id;
     }
     
-    @OneToMany(mappedBy="server")
+    @OneToMany(mappedBy="stage")
     @Transient
     private List<Installation> installationen;
 

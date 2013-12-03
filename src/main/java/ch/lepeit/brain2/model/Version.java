@@ -18,7 +18,7 @@ public class Version implements Serializable{
     @GeneratedValue
     private int id;
     
-    @OneToMany
+    @OneToMany(mappedBy = "version")
     private List<Installation> installationen;
     
     private String versionsNr;

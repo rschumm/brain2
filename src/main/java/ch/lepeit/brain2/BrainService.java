@@ -8,6 +8,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import org.h2.constant.SysProperties;
+
 import ch.lepeit.brain2.model.DeployArtefakt;
 import ch.lepeit.brain2.model.Installation;
 import ch.lepeit.brain2.model.Server;
@@ -37,7 +39,7 @@ public class BrainService {
     }
 
     public List<Installation> getAllInstallations() {
-        return em.createQuery("SELECT x FROM Installation x").getResultList();
+        return em.createQuery("SELECT x FROM Installation x", Installation.class).getResultList();
     }
 
     public Stage getStageForName(String name) {
@@ -52,6 +54,7 @@ public class BrainService {
 
     public void addInstallation(Installiere installiere) {
 
+        System.out.println("in installation");
         Installation installation = new Installation();
         Version version = new Version();
 
@@ -78,21 +81,43 @@ public class BrainService {
         installation.setVersion(version);
 
         em.persist(installation);
+
     }
 
     public String versionFuerInstallation(VersionInfo versionInfo) {
 
+        System.out.println(" in versionFuerInstallation");
         TypedQuery<Installation> query = em
                 .createQuery(
                         "Select i from Installation i where i.stage.kurzName = :stageKurzName and i.server.url = :serverUrl and i.deployArtefakt.bundleId = :bundleId",
                         Installation.class);
+        // TypedQuery<String> query = em
+        // .createQuery(
+        // "Select MAX(VERSIONSNR) as vnr from Installation i join version v on v.id = i.version_idfs join stage st on s.id = i.stage_idfs join deployartefakt d on d.id = i.deployartefakt_idfs JOIN server s on s.id = i.server_idfs where st.kurzname=:stageKurzName and s.url= :serverUrl and d.bundleId=:bundleId group by VERSIONSNR order by vnr desc",
+        // String.class);
         query.setParameter("stageKurzName", versionInfo.getStageKurzName());
         query.setParameter("serverUrl", versionInfo.getServerUrl());
         query.setParameter("bundleId", versionInfo.getArtefaktBudleId());
 
         List<Installation> resultList = query.getResultList();
+        // int version = query.getFirstResult();
+        // System.out.println(version);
+        // return version == 0 ? "nichts" : String.valueOf(version);
 
-        return resultList.size() == 0 ? "nichts" : resultList.get(0).getVersion().getVersionsNr();
+        if (resultList.size() == 0) {
+            return "nichts";
+        }
+        System.out.println("here");
+
+        int version = 0;
+        for (Installation installation : resultList) {
+           if (version < Integer.parseInt(installation.getVersion().getVersionsNr())) {
+                version = Integer.parseInt(installation.getVersion().getVersionsNr());
+            }
+        }
+
+        return String.valueOf(version);
+
     }
 
     public void addVersion(Version version) {
