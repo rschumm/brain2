@@ -123,6 +123,15 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>0.6.4-SNAPSHOT</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 	<profiles>
 		<profile>
@@ -132,11 +141,16 @@
 					<plugin>
 						<groupId>org.jacoco</groupId>
 						<artifactId>jacoco-maven-plugin</artifactId>
-						<version>0.6.4-SNAPSHOT</version>
 						<configuration>
+							<adress>localhost</adress>
+							<port>4711</port>
 						</configuration>
 						<executions>
 							<execution>
+								<id>dump-remote-data</id>
+								<goals>
+									<goal>dump</goal>
+								</goals>
 							</execution>
 						</executions>
 					</plugin>
