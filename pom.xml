@@ -156,7 +156,7 @@
 				<plugin>
 					<groupId>org.jacoco</groupId>
 					<artifactId>jacoco-maven-plugin</artifactId>
-					<version>0.6.4-SNAPSHOT</version>
+					<version>0.6.4.201312101107</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -172,6 +172,7 @@
 						<configuration>
 							<adress>localhost</adress>
 							<port>4711</port>
+							<reset>true</reset>
 						</configuration>
 						<executions>
 							<execution>

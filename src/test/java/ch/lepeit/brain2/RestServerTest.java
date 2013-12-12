@@ -38,3 +38,6 @@ public class RestServerTest {
 
 
 // -javaagent:D:\SCRE_Library\jacoco-builds\jacocoagent.jar=output=tcpserver,address=*,port=4711
+
+//-javaagent:D:\SCRE_Library\jacoco-0.6.4.201312101107\lib\jacocoagent.jar=output=tcpserver,address=*,port=4711
+
