@@ -12,7 +12,7 @@ import com.eclipsesource.restfuse.annotation.Context;
 import com.eclipsesource.restfuse.annotation.HttpTest;
 
 @RunWith( HttpJUnitRunner.class )
-public class RestTest {
+public class RestServerTest {
  
   @Rule
   public Destination destination = new Destination(  this, "http://localhost:8080" ); 
