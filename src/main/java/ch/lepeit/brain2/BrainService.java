@@ -2,7 +2,6 @@ package ch.lepeit.brain2;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -14,7 +13,7 @@ import ch.lepeit.brain2.model.Server;
 import ch.lepeit.brain2.model.Stage;
 import ch.lepeit.brain2.model.Version;
 
-@Stateless
+
 public class BrainService {
 
     @PersistenceContext
