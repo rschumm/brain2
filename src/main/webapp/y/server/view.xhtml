@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{serverBean.id}"/>
+		<f:event type="preRenderView" listener="#{serverBean.retrieve}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Server"/>
+
+	<ui:define name="header">
+		Server
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Server
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="serverBeanServerId" value="Id:"/>
+			<h:outputText id="serverBeanServerId" value="#{serverBean.server.id}"/>
+			<h:outputText/>
+			<h:outputLabel for="serverBeanServerUrl" value="Url:"/>
+			<h:outputText id="serverBeanServerUrl" value="#{serverBean.server.url}"/>
+			<h:outputText/>
+			<h:outputLabel for="serverBeanServerNumber" value="Number:"/>
+			<h:outputText id="serverBeanServerNumber" value="#{serverBean.server.number}"/>
+			<h:outputText/>
+			<h:outputLabel for="serverBeanServerInstallation" value="Installation:"/>
+			<h:dataTable id="serverBeanServerInstallation" styleClass="data-table" value="#{serverBean.server.installation}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Server"/>
+					</f:facet>
+					<h:link outcome="/y/installation/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="forgeviewdisplayitemServer" value="#{forgeview:display(_item.server)}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Deploy Artefakt"/>
+					</f:facet>
+					<h:link outcome="/y/installation/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="forgeviewdisplayitemDeployArtefakt" value="#{forgeview:display(_item.deployArtefakt)}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Version"/>
+					</f:facet>
+					<h:link outcome="/y/installation/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="forgeviewdisplayitemVersion" value="#{forgeview:display(_item.version)}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Stage"/>
+					</f:facet>
+					<h:link outcome="/y/installation/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemStage" value="#{_item.stage}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="serverBeanServerDescription" value="Description:"/>
+			<h:outputText id="serverBeanServerDescription" value="#{serverBean.server.description}"/>
+			<h:outputText/>
+			<h:outputLabel for="serverBeanServerInstallationen" value="Installationen:"/>
+			<h:dataTable id="serverBeanServerInstallationen" styleClass="data-table" value="#{serverBean.server.installationen}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Deploy Artefakt"/>
+					</f:facet>
+					<h:link outcome="/y/installation/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="forgeviewdisplayitemDeployArtefakt" value="#{forgeview:display(_item.deployArtefakt)}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Version"/>
+					</f:facet>
+					<h:link outcome="/y/installation/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="forgeviewdisplayitemVersion" value="#{forgeview:display(_item.version)}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Stage"/>
+					</f:facet>
+					<h:link outcome="/y/installation/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemStage" value="#{_item.stage}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>

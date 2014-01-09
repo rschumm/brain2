@@ -19,7 +19,7 @@ public class Stage implements Serializable {
     
     private String kurzName;
 
-    public int getStage_ID() {
+    public int getId() {
         return id;
     }
 

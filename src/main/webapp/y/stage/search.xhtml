@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value="#{stageBean.page}"/>
+		<f:event type="preRenderView" listener="#{stageBean.paginate}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Stage entities"/>
+
+	<ui:define name="header">
+		Stage
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Stage entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="stageBeanExampleStageID" value="Stage_ID:"/>
+						<h:panelGroup>
+							<h:inputText id="stageBeanExampleStageID" value="#{stageBean.example.id}"/>
+							<h:message for="stageBeanExampleStageID" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="stageBeanExampleKurzName" value="Kurz Name:"/>
+						<h:panelGroup>
+							<h:inputText id="stageBeanExampleKurzName" value="#{stageBean.example.kurzName}"/>
+							<h:message for="stageBeanExampleKurzName" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="stageBeanExampleName" value="Name:"/>
+						<h:panelGroup>
+							<h:inputText id="stageBeanExampleName" value="#{stageBean.example.name}"/>
+							<h:message for="stageBeanExampleName" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action="#{stageBean.search}" styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action="#{stageBean.create}" styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="stageBeanPageItems" styleClass="data-table" value="#{stageBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Stage_ID"/>
+					</f:facet>
+					<h:link outcome="/y/stage/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemStageID" value="#{_item.id}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Kurz Name"/>
+					</f:facet>
+					<h:link outcome="/y/stage/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemKurzName" value="#{_item.kurzName}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Name"/>
+					</f:facet>
+					<h:link outcome="/y/stage/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemName" value="#{_item.name}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value="#{stageBean}"/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

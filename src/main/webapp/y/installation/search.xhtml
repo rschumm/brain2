@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value="#{installationBean.page}"/>
+		<f:event type="preRenderView" listener="#{installationBean.paginate}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Installation entities"/>
+
+	<ui:define name="header">
+		Installation
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Installation entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGrid columnClasses="label,component,required" columns="3">
+						<h:outputLabel for="installationBeanExampleServer" value="Server:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{serverBean.converter}" id="installationBeanExampleServer" value="#{installationBean.example.server}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{serverBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="installationBeanExampleServer" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="installationBeanExampleDeployArtefakt" value="Deploy Artefakt:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{deployArtefaktBean.converter}" id="installationBeanExampleDeployArtefakt" value="#{installationBean.example.deployArtefakt}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{deployArtefaktBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="installationBeanExampleDeployArtefakt" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="installationBeanExampleVersion" value="Version:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{versionBean.converter}" id="installationBeanExampleVersion" value="#{installationBean.example.version}">
+								<f:selectItem/>
+								<f:selectItems itemLabel="#{forgeview:display(_item)}" itemValue="#{_item}" value="#{versionBean.all}" var="_item"/>
+							</h:selectOneMenu>
+							<h:message for="installationBeanExampleVersion" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+						<h:outputLabel for="installationBeanExampleStage" value="Stage:"/>
+						<h:panelGroup>
+							<h:selectOneMenu converter="#{stageBean.converter}" id="installationBeanExampleStage" value="#{installationBean.example.stage}">
+								<f:selectItem/>
+								<f:selectItems value="#{stageBean.all}"/>
+							</h:selectOneMenu>
+							<h:message for="installationBeanExampleStage" styleClass="error"/>
+						</h:panelGroup>
+						<h:outputText/>
+					</h:panelGrid>
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action="#{installationBean.search}" styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action="#{installationBean.create}" styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="installationBeanPageItems" styleClass="data-table" value="#{installationBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Server"/>
+					</f:facet>
+					<h:link outcome="/y/installation/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="forgeviewdisplayitemServer" value="#{forgeview:display(_item.server)}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Deploy Artefakt"/>
+					</f:facet>
+					<h:link outcome="/y/installation/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="forgeviewdisplayitemDeployArtefakt" value="#{forgeview:display(_item.deployArtefakt)}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Version"/>
+					</f:facet>
+					<h:link outcome="/y/installation/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="forgeviewdisplayitemVersion" value="#{forgeview:display(_item.version)}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Stage"/>
+					</f:facet>
+					<h:link outcome="/y/installation/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemStage" value="#{_item.stage}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value="#{installationBean}"/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

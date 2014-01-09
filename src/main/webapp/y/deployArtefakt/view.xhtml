@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:forgeview="http://jboss.org/forge/view"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{deployArtefaktBean.id}"/>
+		<f:event type="preRenderView" listener="#{deployArtefaktBean.retrieve}"/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Deploy Artefakt"/>
+
+	<ui:define name="header">
+		Deploy Artefakt
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Deploy Artefakt
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="deployArtefaktBeanDeployArtefaktId" value="Id:"/>
+			<h:outputText id="deployArtefaktBeanDeployArtefaktId" value="#{deployArtefaktBean.deployArtefakt.id}"/>
+			<h:outputText/>
+			<h:outputLabel for="deployArtefaktBeanDeployArtefaktInstallationen" value="Installationen:"/>
+			<h:dataTable id="deployArtefaktBeanDeployArtefaktInstallationen" styleClass="data-table" value="#{deployArtefaktBean.deployArtefakt.installationen}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Server"/>
+					</f:facet>
+					<h:link outcome="/y/installation/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="forgeviewdisplayitemServer" value="#{forgeview:display(_item.server)}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Version"/>
+					</f:facet>
+					<h:link outcome="/y/installation/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="forgeviewdisplayitemVersion" value="#{forgeview:display(_item.version)}"/>
+					</h:link>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Stage"/>
+					</f:facet>
+					<h:link outcome="/y/installation/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="itemStage" value="#{_item.stage}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<h:outputText/>
+			<h:outputLabel for="deployArtefaktBeanDeployArtefaktName" value="Name:"/>
+			<h:outputText id="deployArtefaktBeanDeployArtefaktName" value="#{deployArtefaktBean.deployArtefakt.name}"/>
+			<h:outputText/>
+			<h:outputLabel for="deployArtefaktBeanDeployArtefaktGroupId" value="Group Id:"/>
+			<h:outputText id="deployArtefaktBeanDeployArtefaktGroupId" value="#{deployArtefaktBean.deployArtefakt.groupId}"/>
+			<h:outputText/>
+			<h:outputLabel for="deployArtefaktBeanDeployArtefaktArtefaktId" value="Artefakt Id:"/>
+			<h:outputText id="deployArtefaktBeanDeployArtefaktArtefaktId" value="#{deployArtefaktBean.deployArtefakt.artefaktId}"/>
+			<h:outputText/>
+			<h:outputLabel for="deployArtefaktBeanDeployArtefaktExtension" value="Extension:"/>
+			<h:outputText id="deployArtefaktBeanDeployArtefaktExtension" value="#{deployArtefaktBean.deployArtefakt.extension}"/>
+			<h:outputText/>
+			<h:outputLabel for="deployArtefaktBeanDeployArtefaktBundleId" value="Bundle Id:"/>
+			<h:outputText id="deployArtefaktBeanDeployArtefaktBundleId" value="#{deployArtefaktBean.deployArtefakt.bundleId}"/>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>
