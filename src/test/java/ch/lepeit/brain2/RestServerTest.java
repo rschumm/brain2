@@ -33,13 +33,13 @@ public class RestServerTest {
 }
 
 // Jacoco Agent:
-// -javaagent:D:\SCRE_Library\jacoco-0.6.3.201306030806\lib\jacocoagent.jar=output=tcpserver,address=*,port=4711
+// -javaagent:D:\SCRE_Library\jacoco-0.6.3.201306030806\lib\jacocoagent.jar=output=tcpserver,address=*,port=4711,excludes=*$$$*
 // Agent SN
-// -javaagent:C:\eplatform\lib\m3-repository\org\jacoco\org.jacoco.agent\0.6.4-SNAPSHOT\org.jacoco.agent-0.6.4-SNAPSHOT-runtime.jar=output=tcpserver,address=*,port=4711
+// -javaagent:C:\eplatform\lib\m3-repository\org\jacoco\org.jacoco.agent\0.6.4-SNAPSHOT\org.jacoco.agent-0.6.4-SNAPSHOT-runtime.jar=output=tcpserver,address=*,port=4711,excludes=*$$$*
 
-// -javaagent:C:\eplatform\lib\m3-repository\org\jacoco\org.jacoco.agent\0.6.4-SNAPSHOT\org.jacoco.agent-0.6.4-SNAPSHOT-runtime.jar=output=tcpserver,address=*,port=4711
+// -javaagent:C:\eplatform\lib\m3-repository\org\jacoco\org.jacoco.agent\0.6.4-SNAPSHOT\org.jacoco.agent-0.6.4-SNAPSHOT-runtime.jar=output=tcpserver,address=*,port=4711,excludes=*$$$*
 
-// -javaagent:D:\SCRE_Library\jacoco-builds\jacocoagent.jar=output=tcpserver,address=*,port=4711
+// -javaagent:D:\SCRE_Library\jacoco-builds\jacocoagent.jar=output=tcpserver,address=*,port=4711,excludes=*$$$*
 
-// -javaagent:D:\SCRE_Library\jacoco-0.6.4.201312101107\lib\jacocoagent.jar=output=tcpserver,address=*,port=4711
+// -javaagent:D:\SCRE_Library\jacoco-0.6.4.201312101107\lib\jacocoagent.jar=output=tcpserver,address=*,port=4711,excludes=*$$$*
 
